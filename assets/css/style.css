@@ -1,0 +1,47 @@
+.wrap-rename-taxonomies .column-status { width: 8%; text-align: center; }
+
+.wrap-rename-taxonomies .column-status .dashicons { display: inline-block; width: 1.62em; height: 1.62em; line-height: 1.62em; border: 2px solid; border-radius: 1.62em; opacity: .33; }
+
+.wrap-rename-taxonomies .column-status .dashicons-edit { background: #0a6; color: #fff; border-color: #095; opacity: 1; }
+
+.edit-rename-taxonomies { margin-top: 2.62em; }
+
+.edit-rename-taxonomies th, .edit-rename-taxonomies td { padding: 1em 1.62em; background-color: #f9f9f9; border-top: 1px solid; border-bottom: 1px solid; border-color: #d3d3d3; }
+
+.edit-rename-taxonomies th { background-color: #e9e9e9; }
+
+.edit-rename-taxonomies label { display: block; text-align: right; }
+
+[dir=rtl] .edit-rename-taxonomies label { text-align: left; }
+
+.edit-rename-taxonomies label code { display: inline-block; margin-top: .62em; font-size: .81em; opacity: 0; }
+
+.edit-rename-taxonomies .description { display: block; margin: .62em 2px 0; }
+
+.edit-rename-taxonomies input[type="text"] { max-width: 24em; font-weight: 700; }
+
+.edit-rename-taxonomies .button-hidden { display: none; }
+
+.edit-rename-taxonomies .button + .button { margin-left: 1em; margin-right: 1em; }
+
+.edit-rename-taxonomies .button-reset { width: 2.62em; padding-left: 0; padding-right: 0; text-align: center; }
+
+.edit-rename-taxonomies tr:hover label code { opacity: .75; }
+
+.edit-rename-taxonomies tr:hover .button-hidden { display: inline-block; }
+
+::-webkit-input-placeholder { font-size: .9em; font-weight: 300; font-style: italic; color: inherit; opacity: .5; }
+
+::-moz-placeholder { font-size: .9em; font-weight: 300; font-style: italic; color: inherit; opacity: .5; }
+
+:-ms-input-placeholder { font-size: .9em; font-weight: 300; font-style: italic; color: inherit; opacity: .5; }
+
+::placeholder { font-size: .9em; font-weight: 300; font-style: italic; color: inherit; opacity: .5; }
+
+.custom-default-value ::-webkit-input-placeholder { font-style: normal; opacity: .9; }
+
+.custom-default-value ::-moz-placeholder { font-style: normal; opacity: .9; }
+
+.custom-default-value :-ms-input-placeholder { font-style: normal; opacity: .9; }
+
+.custom-default-value ::placeholder { font-style: normal; opacity: .9; }
