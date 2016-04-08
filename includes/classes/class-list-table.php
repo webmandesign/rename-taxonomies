@@ -59,7 +59,10 @@ class WebMan_Rename_Taxonomies_List_table extends WP_List_Table {
 
 			// Processing
 
-				parent::__construct();
+				parent::__construct( array(
+						'singular' => esc_html__( 'Taxonomy', 'rename-taxonomies' ),
+						'plural'   => esc_html__( 'Taxonomies', 'rename-taxonomies' ),
+					) );
 
 				$this->prepare_items();
 
@@ -83,19 +86,23 @@ class WebMan_Rename_Taxonomies_List_table extends WP_List_Table {
 
 			// Helper variables
 
+				$items = array();
+
 				$taxonomy_objects = get_taxonomies( null, 'objects' );
+				$labels_default   = WebMan_Rename_Taxonomies::get_default_labels();
+				$labels_new       = get_option( WebMan_Rename_Taxonomies::$option_name );
 
-				$new_labels = get_option( WebMan_Rename_Taxonomies::$option_name );
+				// Get only labels from stored plugin option
 
-				if (
-						isset( $new_labels['taxonomies'] )
-						&& is_array( $new_labels['taxonomies'] )
-						&& ! empty( $new_labels['taxonomies'] )
-					) {
-					$new_labels = $new_labels['taxonomies'];
-				} else {
-					$new_labels = array();
-				}
+					if (
+							isset( $labels_new['taxonomies'] )
+							&& is_array( $labels_new['taxonomies'] )
+							&& ! empty( $labels_new['taxonomies'] )
+						) {
+						$labels_new = $labels_new['taxonomies'];
+					} else {
+						$labels_new = array();
+					}
 
 				// Skip these taxonomies
 
@@ -105,38 +112,114 @@ class WebMan_Rename_Taxonomies_List_table extends WP_List_Table {
 							'post_format',
 						) );
 
+				// Pagination setup
+
+					$per_page     = $this->get_items_per_page( 'taxonomies_per_page', WebMan_Rename_Taxonomies::$per_page );
+					$current_page = $this->get_pagenum();
+
 
 			// Processing
 
-				foreach ( $taxonomy_objects as $taxonomy => $taxonomy_object ) {
+				// Get all list items
 
-					if ( in_array( $taxonomy, $skipped_keys ) ) {
-						continue;
-					}
+					foreach ( $taxonomy_objects as $taxonomy => $taxonomy_object ) {
 
-					$count_new_labels = 0;
+						// Skip taxonomies
 
-					if (
-							isset( $new_labels[ $taxonomy ] )
-							&& ! empty( $new_labels[ $taxonomy ] )
-						) {
-						$count_new_labels = count( $new_labels[ $taxonomy ] );
-					}
+							if (
+									! in_array( $taxonomy, array( 'category', 'post_tag' ) )
+									&& empty( $taxonomy_object->label )
+								) {
+								$skipped_keys[] = $taxonomy;
+							}
 
-					$this->items[] = array(
-							'title'     => $taxonomy_object->label,
-							'post_type' => $taxonomy_object->object_type,
-							'status'    => absint( $count_new_labels ),
-							'key'       => $taxonomy,
+							if ( in_array( $taxonomy, $skipped_keys ) ) {
+								continue;
+							}
+
+						// Set cycle helper variables
+
+							$count_labels_new = 0;
+							$title_default    = '';
+
+							// Count customized labels
+
+								if (
+										isset( $labels_new[ $taxonomy ] )
+										&& ! empty( $labels_new[ $taxonomy ] )
+									) {
+									$count_labels_new = count( $labels_new[ $taxonomy ] );
+								}
+
+							// Default taxonomy title
+
+								// WordPress don't set this for Categories and Tags so we have to it manually.
+
+								if ( isset( $labels_default[ $taxonomy ]['name'] ) ) {
+									$title_default = $labels_default[ $taxonomy ]['name'];
+								} else if ( 'category' == $taxonomy ) {
+									$title_default = esc_html__( 'Categories', 'rename-taxonomies' );
+								} else if ( 'post_tag' == $taxonomy ) {
+									$title_default = esc_html__( 'Tags', 'rename-taxonomies' );
+								}
+
+						// Set item data
+
+							$items[] = array(
+									'title'         => $taxonomy_object->label,
+									'title_default' => $title_default,
+									'post_type'     => $taxonomy_object->object_type,
+									'status'        => absint( $count_labels_new ),
+									'key'           => $taxonomy,
+								);
+
+							// Sort items alphabetically (by customized label)
+
+								usort( $items, array( $this, 'sort_by_title' ) );
+
+					} // /foreach
+
+				// Set column headers
+
+					$this->_column_headers = array(
+							$this->get_columns(), // all columns
+							array(), // hidden columns
+							array(), // sortable columns
 						);
 
-				} // /foreach
+				// Set pagination and split items into chunks
 
-				$columns = $this->get_columns();
+					$items       = array_chunk( $items, absint( $per_page ) );
+					$total_items = count( $taxonomy_objects ) - count( $skipped_keys );
 
-				$this->_column_headers = array( $columns, array(), array() );
+					$this->items = $items[ $current_page - 1 ];
+
+					$this->set_pagination_args( array(
+							'total_items' => absint( $total_items ),
+							'per_page'    => absint( $per_page ),
+						) );
 
 		} // /prepare_items
+
+
+
+		/**
+		 * Sort by taxonomy title, alphabetically
+		 *
+		 * @since    1.0
+		 * @version  1.0
+		 */
+		function sort_by_title( $a, $b ) {
+
+			// Output
+
+				if ( $a['title'] == $b['title'] ) {
+					return strcmp( $a['key'], $b['key'] );
+				} else {
+					return strcmp( $a['title'], $b['title'] );
+				}
+
+		} // /sort_by_title
 
 
 
@@ -158,10 +241,11 @@ class WebMan_Rename_Taxonomies_List_table extends WP_List_Table {
 			// Processing
 
 				$columns = array(
-						'status'    => esc_html__( 'Status', 'rename-taxonomies' ),
-						'title'     => esc_html__( 'Taxonomy Title', 'rename-taxonomies' ),
-						'key'       => esc_html_x( 'Taxonomy Key', 'The same as "taxonomy registration ID".', 'rename-taxonomies' ),
-						'post_type' => esc_html__( 'Related Post Types', 'rename-taxonomies' ),
+						'status'        => esc_html__( 'Status', 'rename-taxonomies' ),
+						'title'         => esc_html_x( 'Taxonomy Title (*)', 'The (*) is for info note below the items list.', 'rename-taxonomies' ),
+						'title_default' => esc_html__( 'Default Taxonomy Title', 'rename-taxonomies' ),
+						'key'           => esc_html_x( 'Taxonomy Registration Key', 'The same as "taxonomy registration ID".', 'rename-taxonomies' ),
+						'post_type'     => esc_html__( 'Related Post Types', 'rename-taxonomies' ),
 					);
 
 
@@ -174,169 +258,215 @@ class WebMan_Rename_Taxonomies_List_table extends WP_List_Table {
 
 
 		/**
-		 * Column content: title
-		 *
-		 * Use `column_COLUMNID` naming convention.
-		 *
-		 * @since    1.0
-		 * @version  1.0
+		 * Columns contents
 		 */
-		function column_title( $item ) {
 
-			// Helper variables
+			/**
+			 * Column content: status
+			 *
+			 * Use `column_COLUMNID` naming convention.
+			 *
+			 * @since    1.0
+			 * @version  1.0
+			 */
+			function column_status( $item ) {
 
-				$output = '';
+				// Helper variables
 
-				$edit_url = add_query_arg( array(
-						'action'   => 'edit',
-						'taxonomy' => $item['key']
-					) );
+					$output = '';
 
-
-			// Processing
-
-				// Build row actions
-
-					$actions = array(
-							'edit' => '<a href="' . esc_url( $edit_url ) . '">' . esc_html__( 'Edit taxonomy labels', 'rename-taxonomies' ) . '</a>',
-						);
-
-				// Setting output HTML
-
-					$output = sprintf(
-							'<strong><a href="%1$s">%2$s</a></strong> %3$s',
-							esc_url( $edit_url ), // %1$s
-							esc_html( $item['title'] ), // %2$s
-							$this->row_actions( $actions ) // $3%s
-						);
+					$edit_url = add_query_arg( array(
+							'action'   => 'edit',
+							'taxonomy' => $item['key']
+						) );
 
 
-			// Output
+				// Processing
 
-				return $output;
+					if ( $item['status'] > 0 ) {
 
-		} // /column_title
+						$output .= '<a href="' . esc_url( $edit_url ) . '" class="dashicons dashicons-edit" title="' . esc_attr__( 'Uses customized labels', 'rename-taxonomies' ) . '">';
+						$output .= '<span class="screen-reader-text">';
+						$output .= esc_html__( 'Uses customized labels', 'rename-taxonomies' );
+						$output .= '</span>';
+						$output .= '</a>';
 
+					} else {
 
+						$output .= '<a href="' . esc_url( $edit_url ) . '" class="dashicons dashicons-admin-generic" title="' . esc_attr__( 'Uses default labels', 'rename-taxonomies' ) . '">';
+						$output .= '<span class="screen-reader-text">';
+						$output .= esc_html__( 'Uses default labels', 'rename-taxonomies' );
+						$output .= '</span>';
+						$output .= '</a>';
 
-		/**
-		 * Column content: status
-		 *
-		 * Use `column_COLUMNID` naming convention.
-		 *
-		 * @since    1.0
-		 * @version  1.0
-		 */
-		function column_status( $item ) {
-
-			// Helper variables
-
-				$output = '';
-
-				$edit_url = add_query_arg( array(
-						'action'   => 'edit',
-						'taxonomy' => $item['key']
-					) );
-
-
-			// Processing
-
-				if ( $item['status'] > 0 ) {
-
-					$output .= '<a href="' . esc_url( $edit_url ) . '" class="dashicons dashicons-edit" title="' . esc_attr__( 'Uses customized labels', 'rename-taxonomies' ) . '">';
-					$output .= '<span class="screen-reader-text">';
-					$output .= esc_html__( 'Uses customized labels', 'rename-taxonomies' );
-					$output .= '</span>';
-					$output .= '</a>';
-
-				} else {
-
-					$output .= '<a href="' . esc_url( $edit_url ) . '" class="dashicons dashicons-admin-generic" title="' . esc_attr__( 'Uses default labels', 'rename-taxonomies' ) . '">';
-					$output .= '<span class="screen-reader-text">';
-					$output .= esc_html__( 'Uses default labels', 'rename-taxonomies' );
-					$output .= '</span>';
-					$output .= '</a>';
-
-				}
+					}
 
 
 
-			// Output
+				// Output
 
-				return $output;
+					return $output;
 
-		} // /column_status
-
-
-
-		/**
-		 * Column content: key
-		 *
-		 * Use `column_COLUMNID` naming convention.
-		 *
-		 * @since    1.0
-		 * @version  1.0
-		 */
-		function column_key( $item ) {
-
-			// Helper variables
-
-				$output = '';
-
-				$edit_url = add_query_arg( array(
-						'action'   => 'edit',
-						'taxonomy' => $item['key']
-					) );
-
-
-			// Output
-
-				return '<a href="' . esc_url( $edit_url ) . '"><code>' . esc_html( $item['key'] ) . '</code></a>';
-
-		} // /column_key
+			} // /column_status
 
 
 
-		/**
-		 * Column content: post_type
-		 *
-		 * Use `column_COLUMNID` naming convention.
-		 *
-		 * @since    1.0
-		 * @version  1.0
-		 */
-		function column_post_type( $item ) {
+			/**
+			 * Column content: title
+			 *
+			 * Use `column_COLUMNID` naming convention.
+			 *
+			 * @since    1.0
+			 * @version  1.0
+			 */
+			function column_title( $item ) {
 
-			// Helper variables
+				// Helper variables
 
-				$output = array();
+					$output = '';
 
-
-			// Processing
-
-				if (
-						is_array( $item['post_type'] )
-						&& ! empty( $item['post_type'] )
-					) {
-
-					foreach ( $item['post_type'] as $post_type ) {
-
-						$post_type_object = get_post_type_object( $post_type );
-
-						if ( ! empty( $post_type_object ) ) {
-							$output[] = $post_type_object->labels->name;
-						}
-
-					} // /foreach
-
-				}
+					$edit_url = add_query_arg( array(
+							'action'   => 'edit',
+							'taxonomy' => $item['key']
+						) );
 
 
-			// Output
+				// Processing
 
-				return esc_html( implode( ', ', (array) $output ) );
+					// Build row actions
 
-		} // /column_post_type
+						$actions = array(
+								'edit' => '<a href="' . esc_url( $edit_url ) . '">' . esc_html__( 'Edit taxonomy labels', 'rename-taxonomies' ) . '</a>',
+							);
+
+					// Setting output HTML
+
+						$output = sprintf(
+								'<strong><a href="%1$s">%2$s</a></strong> %3$s',
+								esc_url( $edit_url ), // %1$s
+								esc_html( $item['title'] ), // %2$s
+								$this->row_actions( $actions ) // $3%s
+							);
+
+
+				// Output
+
+					return $output;
+
+			} // /column_title
+
+
+
+			/**
+			 * Column content: title_default
+			 *
+			 * Use `column_COLUMNID` naming convention.
+			 *
+			 * @since    1.0
+			 * @version  1.0
+			 */
+			function column_title_default( $item ) {
+
+				// Helper variables
+
+					$output = '';
+
+					$class = ( $item['status'] > 0 ) ? ( '' ) : ( ' class="screen-reader-text"' );
+
+					$edit_url = add_query_arg( array(
+							'action'   => 'edit',
+							'taxonomy' => $item['key']
+						) );
+
+
+				// Output
+
+					return '<a href="' . esc_url( $edit_url ) . '"' . $class . '><em>' . esc_html( $item['title_default'] ) . '</em></a>';
+
+			} // /column_title_default
+
+
+
+			/**
+			 * Column content: key
+			 *
+			 * Use `column_COLUMNID` naming convention.
+			 *
+			 * @since    1.0
+			 * @version  1.0
+			 */
+			function column_key( $item ) {
+
+				// Helper variables
+
+					$output = '';
+
+					$edit_url = add_query_arg( array(
+							'action'   => 'edit',
+							'taxonomy' => $item['key']
+						) );
+
+
+				// Output
+
+					return '<a href="' . esc_url( $edit_url ) . '"><code>' . esc_html( $item['key'] ) . '</code></a>';
+
+			} // /column_key
+
+
+
+			/**
+			 * Column content: post_type
+			 *
+			 * Use `column_COLUMNID` naming convention.
+			 *
+			 * @since    1.0
+			 * @version  1.0
+			 */
+			function column_post_type( $item ) {
+
+				// Helper variables
+
+					$output = array();
+
+
+				// Processing
+
+					if (
+							is_array( $item['post_type'] )
+							&& ! empty( $item['post_type'] )
+						) {
+
+						foreach ( $item['post_type'] as $post_type ) {
+
+							$post_type_object = get_post_type_object( $post_type );
+
+							if ( ! empty( $post_type_object ) ) {
+
+								$class = 'dashicons-admin-post';
+
+								if ( $post_type_object->menu_icon ) {
+									$class = $post_type_object->menu_icon;
+								}
+
+								$output_single  = '<span class="dashicons-before ' . esc_attr( $class ) . '">';
+								$output_single .= $post_type_object->labels->name;
+								$output_single .= '</span>';
+
+								$output[] = $output_single;
+
+							}
+
+						} // /foreach
+
+					}
+
+
+				// Output
+
+					return implode( ' ', (array) $output );
+
+			} // /column_post_type
 
 
 

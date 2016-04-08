@@ -18,7 +18,7 @@
  * Domain Path:        /languages
  * License:            GNU General Public License v3
  * License URI:        http://www.gnu.org/licenses/gpl-3.0.txt
- * Requires at least:  4.2
+ * Requires at least:  4.3
  * Tested up to:       4.5
  *
  * This plugin was inspired by "Custom Post Type Editor" plugin
@@ -58,17 +58,19 @@ class WebMan_Rename_Taxonomies {
 
 		private static $instance;
 
+		private static $default_tax_labels;
+
+		private static $label_keys;
+
+		private static $capability;
+
 		public static $plugin_dir;
 
 		public static $admin_page_slug;
 
 		public static $option_name;
 
-		private static $default_tax_labels;
-
-		private static $label_keys;
-
-		private static $capability;
+		public static $per_page;
 
 
 
@@ -111,6 +113,10 @@ class WebMan_Rename_Taxonomies {
 						// Plugin action links
 
 							add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+
+						// Set screen option value
+
+							add_filter( 'set-screen-option', array( $this, 'set_screen_option' ), 10, 3 );
 
 		} // /__construct
 
@@ -161,15 +167,15 @@ class WebMan_Rename_Taxonomies {
 
 			// Helper variables
 
-				// Get saved taxonomy labels
-
-					$taxonomy_labels = get_option( self::$option_name );
-
 				// Get default labels
 
 					if ( is_admin() ) {
 						self::$default_tax_labels[ $taxonomy ] = ( isset( $args['labels'] ) ) ? ( (array) $args['labels'] ) : ( array() );
 					}
+
+				// Get saved taxonomy labels
+
+					$taxonomy_labels = get_option( self::$option_name );
 
 
 			// Requirements check
@@ -257,7 +263,7 @@ class WebMan_Rename_Taxonomies {
 
 				// Adding admin menu item under "Tools" menu
 
-					add_submenu_page(
+					$hook = add_submenu_page(
 							'tools.php',
 							esc_html__( 'Rename Taxonomies', 'rename-taxonomies' ),
 							esc_html__( 'Rename Taxonomies', 'rename-taxonomies' ),
@@ -265,6 +271,10 @@ class WebMan_Rename_Taxonomies {
 							self::$admin_page_slug,
 							'WebMan_Rename_Taxonomies::admin_page'
 						);
+
+				// Loading screen options
+
+					add_action( 'load-' . $hook, 'WebMan_Rename_Taxonomies::screen_options' );
 
 		} // /admin_menu
 
@@ -342,6 +352,46 @@ class WebMan_Rename_Taxonomies {
 
 
 		/**
+		 * Registering screen options
+		 *
+		 * @since    1.0
+		 * @version  1.0
+		 */
+		public static function screen_options() {
+
+			// Processing
+
+				add_screen_option( 'per_page', array(
+						'label'   => esc_html__( 'Number of items per page:', 'rename-taxonomies' ),
+						'default' => self::$per_page,
+						'option'  => 'taxonomies_per_page',
+					) );
+
+		} // /screen_options
+
+
+
+		/**
+		 * Saving screen options
+		 *
+		 * @since    1.0
+		 * @version  1.0
+		 *
+		 * @param  string $status
+		 * @param  string $option
+		 * @param  string $value
+		 */
+		public static function set_screen_option( $status, $option, $value ) {
+
+			// Output
+
+				return $value;
+
+		} // /set_screen_option
+
+
+
+		/**
 		 * Set plugin action links
 		 *
 		 * @since    1.0
@@ -394,6 +444,7 @@ class WebMan_Rename_Taxonomies {
 					self::$option_name        = 'webman_' . str_replace( '-', '_', $plugin_slug );
 					self::$default_tax_labels = array();
 					self::$capability         = 'manage_options';
+					self::$per_page           = 10;
 
 					self::$label_keys = array(
 							// From @link  https://developer.wordpress.org/reference/functions/get_taxonomy_labels/

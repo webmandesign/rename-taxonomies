@@ -1,0 +1,15 @@
+<!-- WPML plugin compatibility setup         -->
+<!--                                         -->
+<!-- @package    WebMan Rename Taxonomies    -->
+<!-- @copyright  WebMan Design, Oliver Juhas -->
+<!--                                         -->
+<!-- @since    1.0                           -->
+<!-- @version  1.0                           -->
+
+<wpml-config>
+	<admin-texts>
+		<key name="webman_rename_taxonomies">
+			<key name="*" />
+		</key>
+	</admin-texts>
+</wpml-config>

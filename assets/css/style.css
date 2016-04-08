@@ -4,6 +4,12 @@
 
 .wrap-rename-taxonomies .column-status .dashicons-edit { background: #0a6; color: #fff; border-color: #095; opacity: 1; }
 
+.wrap-rename-taxonomies .column-post_type .dashicons-before { display: inline-block; padding: .2em 1em .2em .2em; line-height: 1.5em; border: 1px solid #d3d3d3; border-radius: 1.5em; }
+
+[dir=rtl] .wrap-rename-taxonomies .column-post_type .dashicons-before { padding-left: 1em; padding-right: .2em; }
+
+.wrap-rename-taxonomies .column-post_type .dashicons-before::before { margin-left: .2em; margin-right: .2em; line-height: 1.66em; font-size: .9em; }
+
 .edit-rename-taxonomies { margin-top: 2.62em; }
 
 .edit-rename-taxonomies th, .edit-rename-taxonomies td { padding: 1em 1.62em; background-color: #f9f9f9; border-top: 1px solid; border-bottom: 1px solid; border-color: #d3d3d3; }

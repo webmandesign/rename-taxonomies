@@ -23,19 +23,23 @@
 
 	$list = new WebMan_Rename_Taxonomies_List_table();
 
+
+
 ?>
 
-<h1>
-	<?php esc_html_e( 'Rename Taxonomies', 'rename-taxonomies' ); ?>
-</h1>
+<h1><?php esc_html_e( 'Rename Taxonomies', 'rename-taxonomies' ); ?></h1>
 
-<p>
-	<strong><?php esc_html_e( 'List of registered taxonomies:', 'rename-taxonomies' ); ?></strong><br>
-	<em><?php esc_html_e( '(Click the taxonomy name to edit its details)', 'rename-taxonomies' ); ?></em>
-</p>
+	<p>
+		<strong><?php esc_html_e( 'List of registered taxonomies:', 'rename-taxonomies' ); ?></strong><br>
+		<em><?php esc_html_e( '(Click the taxonomy name to edit its details)', 'rename-taxonomies' ); ?></em>
+	</p>
 
-<?php
+	<p class="description dashicons-before dashicons-editor-help">
+		<?php esc_html_e( '(*) Items in the list are sorted alphabetically by (the customized) "Taxonomy Title" field.', 'rename-taxonomies' ); ?>
+	</p>
 
-// Display the list of taxonomies
+	<?php
 
-	$list->display();
+	// Display the list of taxonomies
+
+		$list->display();
