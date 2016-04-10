@@ -15,9 +15,10 @@
 
 // Helper variables
 
-	$taxonomy = ( isset( $_GET['taxonomy'] ) ) ? ( sanitize_key( $_GET['taxonomy'] ) ) : ( '' );
-	$list_url = add_query_arg( 'page', self::$admin_page_slug, get_admin_url( null, 'tools.php' ) );
-	$nonce    = esc_attr( self::$option_name . '_edit_taxonomy_' . $taxonomy );
+	$taxonomy   = ( isset( $_GET['taxonomy'] ) ) ? ( sanitize_key( $_GET['taxonomy'] ) ) : ( '' );
+	$list_url   = add_query_arg( 'page', self::$admin_page_slug, get_admin_url( null, 'tools.php' ) );
+	$nonce      = esc_attr( self::$option_name . '_edit_taxonomy_' . $taxonomy );
+	$label_keys = self::label_keys();
 
 
 
@@ -73,10 +74,10 @@
 
 
 
-	<h2><?php printf( esc_html__( 'Editing %s taxonomy', '%s: taxonomy ID.', 'rename-taxonomies' ), '<code>' . $taxonomy . '</code>' ); ?></h2>
+	<h2><?php printf( esc_html_x( 'Editing %s taxonomy', '%s: taxonomy ID.', 'rename-taxonomies' ), '<code>' . $taxonomy . '</code>' ); ?></h2>
 
 		<p>
-			<?php esc_html_e( 'You can only edit taxonomy labels in form below.', 'rename-taxonomies' ); ?><br>
+			<?php esc_html_e( 'In form below you can only edit taxonomy labels.', 'rename-taxonomies' ); ?><br>
 			<?php esc_html_e( 'The labels will change naming of the taxonomy, but not its functionality (you will not loose any registered taxonomy).', 'rename-taxonomies' ); ?><br>
 			<?php esc_html_e( 'This will not affect taxonomy URL slugs, however.', 'rename-taxonomies' ); ?>
 		</p>
@@ -103,6 +104,20 @@
 
 					$labels_new['taxonomies'][ $taxonomy ] = array_filter( (array) $_POST['labels'] );
 
+					/*
+					SPOILER
+
+					Let's continue...
+					Did you do some research? Do you think it's Jánošík, Slovak national hero? Well, guess again!
+					@link  https://en.wikipedia.org/wiki/Juraj_J%C3%A1no%C5%A1%C3%ADk
+
+					J u _ o _ _ k
+
+					Am I distracting you too much?
+
+					SPOILER
+					*/
+
 				// Save new labels
 
 					if ( update_option( self::$option_name, $labels_new ) ) {
@@ -123,7 +138,7 @@
 			<table class="form-table">
 
 				<tbody>
-				<?php foreach ( self::$label_keys as $label => $args ) : ?>
+				<?php foreach ( $label_keys as $label => $args ) : ?>
 
 					<?php
 

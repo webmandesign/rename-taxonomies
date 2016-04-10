@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WebMan Rename Taxonomies\n"
 "Report-Msgid-Bugs-To: http://support.webmandesign.eu\n"
-"POT-Creation-Date: 2016-04-07 18:39+0200\n"
+"POT-Creation-Date: 2016-04-10 14:24+0200\n"
 "PO-Revision-Date: 2015-04-21 12:38+0100\n"
 "Last-Translator: WebMan - Oliver Juhas <webmandesigneu@gmail.com>\n"
 "Language-Team: \n"
@@ -20,103 +20,129 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/classes/class-list-table.php:161
-msgid "Status"
+#: includes/classes/class-list-table.php:63
+msgid "Taxonomy"
 msgstr ""
 
-#: includes/classes/class-list-table.php:162
-msgid "Taxonomy Title"
+#: includes/classes/class-list-table.php:64
+msgid "Taxonomies"
+msgstr ""
+
+#: includes/classes/class-list-table.php:161
+msgid "Categories"
 msgstr ""
 
 #: includes/classes/class-list-table.php:163
-msgctxt "The same as \"taxonomy registration ID\"."
-msgid "Taxonomy Key"
+msgid "Tags"
 msgstr ""
 
-#: includes/classes/class-list-table.php:164
+#: includes/classes/class-list-table.php:255
+msgid "Status"
+msgstr ""
+
+#: includes/classes/class-list-table.php:256
+msgctxt "The (*) is for info note below the items list."
+msgid "Taxonomy Title (*)"
+msgstr ""
+
+#: includes/classes/class-list-table.php:257
+msgid "Default Taxonomy Title"
+msgstr ""
+
+#: includes/classes/class-list-table.php:258
+msgctxt "The same as \"taxonomy registration ID\"."
+msgid "Taxonomy Registration Key"
+msgstr ""
+
+#: includes/classes/class-list-table.php:259
 msgid "Related Post Types"
 msgstr ""
 
-#: includes/classes/class-list-table.php:201
-msgid "Edit taxonomy labels"
-msgstr ""
-
-#: includes/classes/class-list-table.php:246
-#: includes/classes/class-list-table.php:248
+#: includes/classes/class-list-table.php:299
+#: includes/classes/class-list-table.php:301
 msgid "Uses customized labels"
 msgstr ""
 
-#: includes/classes/class-list-table.php:254
-#: includes/classes/class-list-table.php:256
+#: includes/classes/class-list-table.php:307
+#: includes/classes/class-list-table.php:309
 msgid "Uses default labels"
 msgstr ""
 
-#: includes/pages/edit.php:24 includes/pages/list.php:29
-#: rename-taxonomies.php:262 rename-taxonomies.php:263
+#: includes/classes/class-list-table.php:350
+msgid "Edit taxonomy labels"
+msgstr ""
+
+#: includes/pages/edit.php:26 includes/pages/list.php:30
+#: rename-taxonomies.php:268 rename-taxonomies.php:269
 msgid "Rename Taxonomies"
 msgstr ""
 
-#: includes/pages/edit.php:28 includes/pages/edit.php:215
+#: includes/pages/edit.php:29 includes/pages/edit.php:233
 msgid "No changes will be saved!"
 msgstr ""
 
-#: includes/pages/edit.php:29 includes/pages/edit.php:216
+#: includes/pages/edit.php:30 includes/pages/edit.php:234
 msgid "&laquo; Go back to taxonomies list"
 msgstr ""
 
-#: includes/pages/edit.php:41
+#: includes/pages/edit.php:42
 msgid "Insufficient privileges!"
 msgstr ""
 
-#: includes/pages/edit.php:50
+#: includes/pages/edit.php:51
 msgid "Sorry, there is nothing to see here."
 msgstr ""
 
-#: includes/pages/edit.php:63
+#: includes/pages/edit.php:64
 msgid "Error: Invalid taxonomy!"
 msgstr ""
 
-#: includes/pages/edit.php:74
+#: includes/pages/edit.php:76
 #, php-format
+msgctxt "%s: taxonomy ID."
 msgid "Editing %s taxonomy"
 msgstr ""
 
-#: includes/pages/edit.php:78
-msgid "You can only edit taxonomy labels in form below."
+#: includes/pages/edit.php:79
+msgid "In form below you can only edit taxonomy labels."
 msgstr ""
 
-#: includes/pages/edit.php:79
+#: includes/pages/edit.php:80
 msgid ""
 "The labels will change naming of the taxonomy, but not its functionality "
 "(you will not loose any registered taxonomy)."
 msgstr ""
 
-#: includes/pages/edit.php:80
+#: includes/pages/edit.php:81
 msgid "This will not affect taxonomy URL slugs, however."
 msgstr ""
 
-#: includes/pages/edit.php:114
+#: includes/pages/edit.php:124
 msgid "New taxonomy labels were saved successfully!"
 msgstr ""
 
-#: includes/pages/edit.php:147
+#: includes/pages/edit.php:126
+msgid "Please, refresh the page to preview the changes."
+msgstr ""
+
+#: includes/pages/edit.php:162
 msgid "- Using WordPress default value -"
 msgstr ""
 
-#: includes/pages/edit.php:181 includes/pages/edit.php:183
+#: includes/pages/edit.php:198 includes/pages/edit.php:200
 msgid "Reset default value"
 msgstr ""
 
-#: includes/pages/edit.php:187 includes/pages/edit.php:213
+#: includes/pages/edit.php:205 includes/pages/edit.php:230
 msgid "Save All Changes"
 msgstr ""
 
-#: includes/pages/edit.php:195
+#: includes/pages/edit.php:214
 #, php-format
 msgid "Default value: \"%s\""
 msgstr ""
 
-#: includes/pages/edit.php:219
+#: includes/pages/edit.php:238
 msgid "Reset all taxonomy labels to default values"
 msgstr ""
 
@@ -128,178 +154,188 @@ msgstr ""
 msgid "(Click the taxonomy name to edit its details)"
 msgstr ""
 
-#: rename-taxonomies.php:361
+#: includes/pages/list.php:38
+msgid ""
+"(*) Items in the list are sorted alphabetically by (the customized) "
+"\"Taxonomy Title\" field."
+msgstr ""
+
+#: rename-taxonomies.php:365
+msgid "Number of items per page:"
+msgstr ""
+
+#: rename-taxonomies.php:411
 msgctxt "Plugin action link."
 msgid "Settings"
 msgstr ""
 
-#: rename-taxonomies.php:402
+#: rename-taxonomies.php:453
 msgctxt "Form field label. Taxonomy label name."
 msgid "Name"
 msgstr ""
 
-#: rename-taxonomies.php:403
+#: rename-taxonomies.php:454
 msgid "General name for the taxonomy, usually plural."
-msgstr ""
-
-#: rename-taxonomies.php:406
-msgctxt "Form field label. Taxonomy label name."
-msgid "Singular Name"
-msgstr ""
-
-#: rename-taxonomies.php:407
-msgid "Name for one item of the taxonomy."
-msgstr ""
-
-#: rename-taxonomies.php:410
-msgctxt "Form field label. Taxonomy label name."
-msgid "Search Items"
-msgstr ""
-
-#: rename-taxonomies.php:411
-msgid "Label for taxonomy search form button."
-msgstr ""
-
-#: rename-taxonomies.php:414
-msgctxt "Form field label. Taxonomy label name."
-msgid "All Items"
-msgstr ""
-
-#: rename-taxonomies.php:415
-msgid "Label for all taxonomy items."
-msgstr ""
-
-#: rename-taxonomies.php:418
-msgctxt "Form field label. Taxonomy label name."
-msgid "Edit Item"
-msgstr ""
-
-#: rename-taxonomies.php:419
-msgid "Label for editing the taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:422
-msgctxt "Form field label. Taxonomy label name."
-msgid "View Item"
-msgstr ""
-
-#: rename-taxonomies.php:423
-msgid "Label for viewing the taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:426
-msgctxt "Form field label. Taxonomy label name."
-msgid "Update Item"
-msgstr ""
-
-#: rename-taxonomies.php:427
-msgid "Label for updating the taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:430
-msgctxt "Form field label. Taxonomy label name."
-msgid "Add New Item"
-msgstr ""
-
-#: rename-taxonomies.php:431
-msgid "Label for adding a new taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:434
-msgctxt "Form field label. Taxonomy label name."
-msgid "New Item Name"
-msgstr ""
-
-#: rename-taxonomies.php:435
-msgid "Label for new taxonomy item name field."
-msgstr ""
-
-#: rename-taxonomies.php:438
-msgctxt "Form field label. Taxonomy label name."
-msgid "Not Found"
-msgstr ""
-
-#: rename-taxonomies.php:439
-msgid "Used in the meta box and taxonomy list table."
-msgstr ""
-
-#: rename-taxonomies.php:442
-msgctxt "Form field label. Taxonomy label name."
-msgid "No Terms"
-msgstr ""
-
-#: rename-taxonomies.php:443
-msgid "Ued in the posts and media list tables."
-msgstr ""
-
-#: rename-taxonomies.php:446
-msgctxt "Form field label. Taxonomy label name."
-msgid "Items List Navigation"
-msgstr ""
-
-#: rename-taxonomies.php:447
-msgid "String for the table pagination hidden heading."
-msgstr ""
-
-#: rename-taxonomies.php:450
-msgctxt "Form field label. Taxonomy label name."
-msgid "Items List"
-msgstr ""
-
-#: rename-taxonomies.php:451
-msgid "String for the table hidden heading."
 msgstr ""
 
 #: rename-taxonomies.php:457
 msgctxt "Form field label. Taxonomy label name."
-msgid "Parent Item"
+msgid "Singular Name"
 msgstr ""
 
 #: rename-taxonomies.php:458
-msgid "Parent taxonomy label."
+msgid "Name for one item of the taxonomy."
+msgstr ""
+
+#: rename-taxonomies.php:461
+msgctxt "Form field label. Taxonomy label name."
+msgid "Search Items"
 msgstr ""
 
 #: rename-taxonomies.php:462
-msgctxt "Form field label. Taxonomy label name."
-msgid "Parent Item Colon"
+msgid "Label for taxonomy search form button."
 msgstr ""
 
-#: rename-taxonomies.php:463
-msgid "The same as parent_item, but with colon (:) in the end."
+#: rename-taxonomies.php:465
+msgctxt "Form field label. Taxonomy label name."
+msgid "All Items"
+msgstr ""
+
+#: rename-taxonomies.php:466
+msgid "Label for all taxonomy items."
+msgstr ""
+
+#: rename-taxonomies.php:469
+msgctxt "Form field label. Taxonomy label name."
+msgid "Edit Item"
 msgstr ""
 
 #: rename-taxonomies.php:470
+msgid "Label for editing the taxonomy item."
+msgstr ""
+
+#: rename-taxonomies.php:473
 msgctxt "Form field label. Taxonomy label name."
-msgid "Popular Items"
+msgid "View Item"
 msgstr ""
 
-#: rename-taxonomies.php:471
-msgid "Popular items label."
+#: rename-taxonomies.php:474
+msgid "Label for viewing the taxonomy item."
 msgstr ""
 
-#: rename-taxonomies.php:475
+#: rename-taxonomies.php:477
 msgctxt "Form field label. Taxonomy label name."
-msgid "Separate Items With Commas"
+msgid "Update Item"
 msgstr ""
 
-#: rename-taxonomies.php:476
-msgid "This is used in the meta box."
-msgstr ""
-
-#: rename-taxonomies.php:480
-msgctxt "Form field label. Taxonomy label name."
-msgid "Add or Remove Items"
+#: rename-taxonomies.php:478
+msgid "Label for updating the taxonomy item."
 msgstr ""
 
 #: rename-taxonomies.php:481
-msgid "Used in the meta box when JavaScript is disabled."
+msgctxt "Form field label. Taxonomy label name."
+msgid "Add New Item"
+msgstr ""
+
+#: rename-taxonomies.php:482
+msgid "Label for adding a new taxonomy item."
 msgstr ""
 
 #: rename-taxonomies.php:485
 msgctxt "Form field label. Taxonomy label name."
-msgid "Choose From Most Used"
+msgid "New Item Name"
 msgstr ""
 
 #: rename-taxonomies.php:486
+msgid "Label for new taxonomy item name field."
+msgstr ""
+
+#: rename-taxonomies.php:489
+msgctxt "Form field label. Taxonomy label name."
+msgid "Not Found"
+msgstr ""
+
+#: rename-taxonomies.php:490
+msgid "Used in the meta box and taxonomy list table."
+msgstr ""
+
+#: rename-taxonomies.php:493
+msgctxt "Form field label. Taxonomy label name."
+msgid "No Terms"
+msgstr ""
+
+#: rename-taxonomies.php:494
+msgid "Used in the posts and media list tables."
+msgstr ""
+
+#: rename-taxonomies.php:497
+msgctxt "Form field label. Taxonomy label name."
+msgid "Items List Navigation"
+msgstr ""
+
+#: rename-taxonomies.php:498
+msgid "String for the table pagination hidden heading."
+msgstr ""
+
+#: rename-taxonomies.php:501
+msgctxt "Form field label. Taxonomy label name."
+msgid "Items List"
+msgstr ""
+
+#: rename-taxonomies.php:502
+msgid "String for the table hidden heading."
+msgstr ""
+
+#: rename-taxonomies.php:519
+msgctxt "Form field label. Taxonomy label name."
+msgid "Parent Item"
+msgstr ""
+
+#: rename-taxonomies.php:520
+msgid "Parent taxonomy label."
+msgstr ""
+
+#: rename-taxonomies.php:524
+msgctxt "Form field label. Taxonomy label name."
+msgid "Parent Item Colon"
+msgstr ""
+
+#: rename-taxonomies.php:525
+msgid "The same as parent_item, but with colon (:) in the end."
+msgstr ""
+
+#: rename-taxonomies.php:532
+msgctxt "Form field label. Taxonomy label name."
+msgid "Popular Items"
+msgstr ""
+
+#: rename-taxonomies.php:533
+msgid "Popular items label."
+msgstr ""
+
+#: rename-taxonomies.php:537
+msgctxt "Form field label. Taxonomy label name."
+msgid "Separate Items With Commas"
+msgstr ""
+
+#: rename-taxonomies.php:538
+msgid "This is used in the meta box."
+msgstr ""
+
+#: rename-taxonomies.php:542
+msgctxt "Form field label. Taxonomy label name."
+msgid "Add or Remove Items"
+msgstr ""
+
+#: rename-taxonomies.php:543
+msgid "Used in the meta box when JavaScript is disabled."
+msgstr ""
+
+#: rename-taxonomies.php:547
+msgctxt "Form field label. Taxonomy label name."
+msgid "Choose From Most Used"
+msgstr ""
+
+#: rename-taxonomies.php:548
 msgid "Used in the meta box."
 msgstr ""

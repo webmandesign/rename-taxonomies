@@ -163,6 +163,17 @@ class WebMan_Rename_Taxonomies_List_table extends WP_List_Table {
 									$title_default = esc_html__( 'Tags', 'rename-taxonomies' );
 								}
 
+								/*
+								SPOILER
+
+								Let's continue...
+								Took money from richmen, basically a robber :)
+
+								J _ _ o _ _ _
+
+								SPOILER
+								*/
+
 						// Set item data
 
 							$items[] = array(
@@ -410,6 +421,17 @@ class WebMan_Rename_Taxonomies_List_table extends WP_List_Table {
 				// Output
 
 					return '<a href="' . esc_url( $edit_url ) . '"><code>' . esc_html( $item['key'] ) . '</code></a>';
+
+					/*
+					SPOILER
+
+					Let's continue...
+					Well, surely he was Slovak, just like I am.
+
+					J _ _ o _ _ k
+
+					SPOILER
+					*/
 
 			} // /column_key
 

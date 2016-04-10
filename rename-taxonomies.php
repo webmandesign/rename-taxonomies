@@ -60,8 +60,6 @@ class WebMan_Rename_Taxonomies {
 
 		private static $default_tax_labels;
 
-		private static $label_keys;
-
 		private static $capability;
 
 		public static $plugin_dir;
@@ -94,7 +92,7 @@ class WebMan_Rename_Taxonomies {
 
 						// Localization
 
-							add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+							add_action( 'plugins_loaded', array( $this, 'load_textdomain' ), 25 ); // Load after the plugin class is loaded (see below)
 
 						// Admin menu
 
@@ -431,7 +429,7 @@ class WebMan_Rename_Taxonomies {
 		 * @since    1.0
 		 * @version  1.0
 		 */
-		private function set_variables() {
+		private static function set_variables() {
 
 			// Processing
 
@@ -446,101 +444,126 @@ class WebMan_Rename_Taxonomies {
 					self::$capability         = 'manage_options';
 					self::$per_page           = 10;
 
-					self::$label_keys = array(
-							// From @link  https://developer.wordpress.org/reference/functions/get_taxonomy_labels/
-
-							'name' => array(
-								'label'       => esc_html_x( 'Name', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'General name for the taxonomy, usually plural.', 'rename_taxonomies' ),
-							),
-							'singular_name' => array(
-								'label'       => esc_html_x( 'Singular Name', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Name for one item of the taxonomy.', 'rename_taxonomies' ),
-							),
-							'search_items' => array(
-								'label'       => esc_html_x( 'Search Items', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Label for taxonomy search form button.', 'rename_taxonomies' ),
-							),
-							'all_items' => array(
-								'label'       => esc_html_x( 'All Items', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Label for all taxonomy items.', 'rename_taxonomies' ),
-							),
-							'edit_item' => array(
-								'label'       => esc_html_x( 'Edit Item', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Label for editing the taxonomy item.', 'rename_taxonomies' ),
-							),
-							'view_item' => array(
-								'label'       => esc_html_x( 'View Item', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Label for viewing the taxonomy item.', 'rename_taxonomies' ),
-							),
-							'update_item' => array(
-								'label'       => esc_html_x( 'Update Item', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Label for updating the taxonomy item.', 'rename_taxonomies' ),
-							),
-							'add_new_item' => array(
-								'label'       => esc_html_x( 'Add New Item', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Label for adding a new taxonomy item.', 'rename_taxonomies' ),
-							),
-							'new_item_name' => array(
-								'label'       => esc_html_x( 'New Item Name', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Label for new taxonomy item name field.', 'rename_taxonomies' ),
-							),
-							'not_found' => array(
-								'label'       => esc_html_x( 'Not Found', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Used in the meta box and taxonomy list table.', 'rename_taxonomies' ),
-							),
-							'no_terms' => array(
-								'label'       => esc_html_x( 'No Terms', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'Ued in the posts and media list tables.', 'rename_taxonomies' ),
-							),
-							'items_list_navigation' => array(
-								'label'       => esc_html_x( 'Items List Navigation', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'String for the table pagination hidden heading.', 'rename_taxonomies' ),
-							),
-							'items_list' => array(
-								'label'       => esc_html_x( 'Items List', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-								'description' => esc_html__( 'String for the table hidden heading.', 'rename_taxonomies' ),
-							),
-
-							// Hierarchical only
-
-								'parent_item' => array(
-									'label'       => esc_html_x( 'Parent Item', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-									'description' => esc_html__( 'Parent taxonomy label.', 'rename_taxonomies' ),
-									'condition'   => 'is_hierarchical',
-								),
-								'parent_item_colon' => array(
-									'label'       => esc_html_x( 'Parent Item Colon', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-									'description' => esc_html__( 'The same as parent_item, but with colon (:) in the end.', 'rename_taxonomies' ),
-									'condition'   => 'is_hierarchical',
-								),
-
-							// Non-hierarchical only
-
-								'popular_items' => array(
-									'label'       => esc_html_x( 'Popular Items', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-									'description' => esc_html__( 'Popular items label.', 'rename_taxonomies' ),
-									'condition'   => 'is_not_hierarchical',
-								),
-								'separate_items_with_commas' => array(
-									'label'       => esc_html_x( 'Separate Items With Commas', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-									'description' => esc_html__( 'This is used in the meta box.', 'rename_taxonomies' ),
-									'condition'   => 'is_not_hierarchical',
-								),
-								'add_or_remove_items' => array(
-									'label'       => esc_html_x( 'Add or Remove Items', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-									'description' => esc_html__( 'Used in the meta box when JavaScript is disabled.', 'rename_taxonomies' ),
-									'condition'   => 'is_not_hierarchical',
-								),
-								'choose_from_most_used' => array(
-									'label'       => esc_html_x( 'Choose From Most Used', 'Form field label. Taxonomy label name.', 'rename_taxonomies' ),
-									'description' => esc_html__( 'Used in the meta box.', 'rename_taxonomies' ),
-									'condition'   => 'is_not_hierarchical',
-								),
-
-						);
-
 		} // /set_variables
+
+
+
+		/**
+		 * Taxonomy label keys, names and descriptions
+		 *
+		 * @since    1.0
+		 * @version  1.0
+		 */
+		public static function label_keys() {
+
+			// Output
+
+				return array(
+						// From @link  https://developer.wordpress.org/reference/functions/get_taxonomy_labels/
+
+						'name' => array(
+							'label'       => esc_html_x( 'Name', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'General name for the taxonomy, usually plural.', 'rename-taxonomies' ),
+						),
+						'singular_name' => array(
+							'label'       => esc_html_x( 'Singular Name', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Name for one item of the taxonomy.', 'rename-taxonomies' ),
+						),
+						'search_items' => array(
+							'label'       => esc_html_x( 'Search Items', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Label for taxonomy search form button.', 'rename-taxonomies' ),
+						),
+						'all_items' => array(
+							'label'       => esc_html_x( 'All Items', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Label for all taxonomy items.', 'rename-taxonomies' ),
+						),
+						'edit_item' => array(
+							'label'       => esc_html_x( 'Edit Item', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Label for editing the taxonomy item.', 'rename-taxonomies' ),
+						),
+						'view_item' => array(
+							'label'       => esc_html_x( 'View Item', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Label for viewing the taxonomy item.', 'rename-taxonomies' ),
+						),
+						'update_item' => array(
+							'label'       => esc_html_x( 'Update Item', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Label for updating the taxonomy item.', 'rename-taxonomies' ),
+						),
+						'add_new_item' => array(
+							'label'       => esc_html_x( 'Add New Item', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Label for adding a new taxonomy item.', 'rename-taxonomies' ),
+						),
+						'new_item_name' => array(
+							'label'       => esc_html_x( 'New Item Name', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Label for new taxonomy item name field.', 'rename-taxonomies' ),
+						),
+						'not_found' => array(
+							'label'       => esc_html_x( 'Not Found', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Used in the meta box and taxonomy list table.', 'rename-taxonomies' ),
+						),
+						'no_terms' => array(
+							'label'       => esc_html_x( 'No Terms', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Used in the posts and media list tables.', 'rename-taxonomies' ),
+						),
+						'items_list_navigation' => array(
+							'label'       => esc_html_x( 'Items List Navigation', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'String for the table pagination hidden heading.', 'rename-taxonomies' ),
+						),
+						'items_list' => array(
+							'label'       => esc_html_x( 'Items List', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'String for the table hidden heading.', 'rename-taxonomies' ),
+						),
+
+						/*
+						SPOILER
+
+						You know you should do something else to stay focused, right? So, guess this out:
+						He was a well known outlaw.
+
+						J _ _ _ _ _ _
+
+						SPOILER
+						*/
+
+						// Hierarchical only
+
+							'parent_item' => array(
+								'label'       => esc_html_x( 'Parent Item', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+								'description' => esc_html__( 'Parent taxonomy label.', 'rename-taxonomies' ),
+								'condition'   => 'is_hierarchical',
+							),
+							'parent_item_colon' => array(
+								'label'       => esc_html_x( 'Parent Item Colon', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+								'description' => esc_html__( 'The same as parent_item, but with colon (:) in the end.', 'rename-taxonomies' ),
+								'condition'   => 'is_hierarchical',
+							),
+
+						// Non-hierarchical only
+
+							'popular_items' => array(
+								'label'       => esc_html_x( 'Popular Items', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+								'description' => esc_html__( 'Popular items label.', 'rename-taxonomies' ),
+								'condition'   => 'is_not_hierarchical',
+							),
+							'separate_items_with_commas' => array(
+								'label'       => esc_html_x( 'Separate Items With Commas', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+								'description' => esc_html__( 'This is used in the meta box.', 'rename-taxonomies' ),
+								'condition'   => 'is_not_hierarchical',
+							),
+							'add_or_remove_items' => array(
+								'label'       => esc_html_x( 'Add or Remove Items', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+								'description' => esc_html__( 'Used in the meta box when JavaScript is disabled.', 'rename-taxonomies' ),
+								'condition'   => 'is_not_hierarchical',
+							),
+							'choose_from_most_used' => array(
+								'label'       => esc_html_x( 'Choose From Most Used', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+								'description' => esc_html__( 'Used in the meta box.', 'rename-taxonomies' ),
+								'condition'   => 'is_not_hierarchical',
+							),
+
+					);
+
+		} // /label_keys
 
 
 
@@ -605,7 +628,7 @@ class WebMan_Rename_Taxonomies {
 				load_plugin_textdomain(
 						'rename-taxonomies',
 						false,
-						dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+						plugin_basename( dirname( __FILE__ ) ) . '/languages'
 					);
 
 		} // /load_textdomain
@@ -616,4 +639,6 @@ class WebMan_Rename_Taxonomies {
 
 } // /WebMan_Rename_Taxonomies
 
-add_action( 'plugins_loaded', 'WebMan_Rename_Taxonomies::init' );
+// Loading with higher priority for multilingual plugins compatibility
+
+	add_action( 'plugins_loaded', 'WebMan_Rename_Taxonomies::init', 20 );

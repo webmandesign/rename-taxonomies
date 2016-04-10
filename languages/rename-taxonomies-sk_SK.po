@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WebMan Rename Taxonomies\n"
 "Report-Msgid-Bugs-To: http://support.webmandesign.eu\n"
-"POT-Creation-Date: 2016-04-07 18:39+0200\n"
-"PO-Revision-Date: 2016-04-07 18:39+0200\n"
+"POT-Creation-Date: 2016-04-10 14:24+0200\n"
+"PO-Revision-Date: 2016-04-10 14:24+0200\n"
 "Last-Translator: Oliver Juhas, WebMan Design\n"
 "Language-Team: WebMan - Oliver Juhas <webmandesigneu@gmail.com>\n"
 "Language: sk_SK\n"
@@ -19,286 +19,327 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/classes/class-list-table.php:161
-msgid "Status"
-msgstr ""
+#: includes/classes/class-list-table.php:63
+msgid "Taxonomy"
+msgstr "Taxonómia"
 
-#: includes/classes/class-list-table.php:162
-msgid "Taxonomy Title"
-msgstr ""
+#: includes/classes/class-list-table.php:64
+msgid "Taxonomies"
+msgstr "Taxonómie"
+
+#: includes/classes/class-list-table.php:161
+msgid "Categories"
+msgstr "Kategórie"
 
 #: includes/classes/class-list-table.php:163
-msgctxt "The same as \"taxonomy registration ID\"."
-msgid "Taxonomy Key"
-msgstr ""
+msgid "Tags"
+msgstr "Značky"
 
-#: includes/classes/class-list-table.php:164
-msgid "Related Post Types"
-msgstr ""
+#: includes/classes/class-list-table.php:255
+msgid "Status"
+msgstr "Stav"
 
-#: includes/classes/class-list-table.php:201
-msgid "Edit taxonomy labels"
-msgstr ""
-
-#: includes/classes/class-list-table.php:246
-#: includes/classes/class-list-table.php:248
-msgid "Uses customized labels"
-msgstr ""
-
-#: includes/classes/class-list-table.php:254
 #: includes/classes/class-list-table.php:256
+msgctxt "The (*) is for info note below the items list."
+msgid "Taxonomy Title (*)"
+msgstr "Názov taxonómie (*)"
+
+#: includes/classes/class-list-table.php:257
+msgid "Default Taxonomy Title"
+msgstr "Pôvodný názov taxonómie"
+
+#: includes/classes/class-list-table.php:258
+msgctxt "The same as \"taxonomy registration ID\"."
+msgid "Taxonomy Registration Key"
+msgstr "Registračné ID taxonómie"
+
+#: includes/classes/class-list-table.php:259
+msgid "Related Post Types"
+msgstr "Pridružené typy obsahu"
+
+#: includes/classes/class-list-table.php:299
+#: includes/classes/class-list-table.php:301
+msgid "Uses customized labels"
+msgstr "Používa upravené názvy"
+
+#: includes/classes/class-list-table.php:307
+#: includes/classes/class-list-table.php:309
 msgid "Uses default labels"
-msgstr ""
+msgstr "Používa pôvodné názvy"
 
-#: includes/pages/edit.php:24 includes/pages/list.php:29
-#: rename-taxonomies.php:262 rename-taxonomies.php:263
+#: includes/classes/class-list-table.php:350
+msgid "Edit taxonomy labels"
+msgstr "Upraviť názvy taxonómie"
+
+#: includes/pages/edit.php:26 includes/pages/list.php:30
+#: rename-taxonomies.php:268 rename-taxonomies.php:269
 msgid "Rename Taxonomies"
-msgstr ""
+msgstr "Premenovať taxonómie"
 
-#: includes/pages/edit.php:28 includes/pages/edit.php:215
+#: includes/pages/edit.php:29 includes/pages/edit.php:233
 msgid "No changes will be saved!"
-msgstr ""
+msgstr "Žiadne zmeny sa neuložia!"
 
-#: includes/pages/edit.php:29 includes/pages/edit.php:216
+#: includes/pages/edit.php:30 includes/pages/edit.php:234
 msgid "&laquo; Go back to taxonomies list"
-msgstr ""
+msgstr "&laquo; Späť na zoznam taxonómií"
 
-#: includes/pages/edit.php:41
+#: includes/pages/edit.php:42
 msgid "Insufficient privileges!"
-msgstr ""
+msgstr "Nedostatočné oprávnenia!"
 
-#: includes/pages/edit.php:50
+#: includes/pages/edit.php:51
 msgid "Sorry, there is nothing to see here."
-msgstr ""
+msgstr "Tu nie je čo vidieť."
 
-#: includes/pages/edit.php:63
+#: includes/pages/edit.php:64
 msgid "Error: Invalid taxonomy!"
-msgstr ""
+msgstr "Chyba: Neplatná taxonómia."
 
-#: includes/pages/edit.php:74
+#: includes/pages/edit.php:76
 #, php-format
+msgctxt "%s: taxonomy ID."
 msgid "Editing %s taxonomy"
-msgstr ""
-
-#: includes/pages/edit.php:78
-msgid "You can only edit taxonomy labels in form below."
-msgstr ""
+msgstr "Upravujete taxonómiu %s"
 
 #: includes/pages/edit.php:79
+msgid "In form below you can only edit taxonomy labels."
+msgstr "V doleuvedenom formulári môžete taxonómiu iba premenovať."
+
+#: includes/pages/edit.php:80
 msgid ""
 "The labels will change naming of the taxonomy, but not its functionality "
 "(you will not loose any registered taxonomy)."
 msgstr ""
+"Premenovaním názvov iba upravíte pomenovanie taxonómie, nie jej "
+"funkcionalitu (nestratíte žiadnu registrovanú taxonómiu)."
 
-#: includes/pages/edit.php:80
+#: includes/pages/edit.php:81
 msgid "This will not affect taxonomy URL slugs, however."
-msgstr ""
+msgstr "Toto nastavenie však nemá žiaden vplyv na URL adresy."
 
-#: includes/pages/edit.php:114
+#: includes/pages/edit.php:124
 msgid "New taxonomy labels were saved successfully!"
-msgstr ""
+msgstr "Nové názvy taxonómie boli úspešne uložené!"
 
-#: includes/pages/edit.php:147
+#: includes/pages/edit.php:126
+msgid "Please, refresh the page to preview the changes."
+msgstr "Znovu načítajte stránku pre aplikovanie zmien."
+
+#: includes/pages/edit.php:162
 msgid "- Using WordPress default value -"
-msgstr ""
+msgstr "- Používa pôvodné nastavenia WordPressu -"
 
-#: includes/pages/edit.php:181 includes/pages/edit.php:183
+#: includes/pages/edit.php:198 includes/pages/edit.php:200
 msgid "Reset default value"
-msgstr ""
+msgstr "Nastaviť pôvodnú hodnotu"
 
-#: includes/pages/edit.php:187 includes/pages/edit.php:213
+#: includes/pages/edit.php:205 includes/pages/edit.php:230
 msgid "Save All Changes"
-msgstr ""
+msgstr "Uložiť všetky zmeny"
 
-#: includes/pages/edit.php:195
+#: includes/pages/edit.php:214
 #, php-format
 msgid "Default value: \"%s\""
-msgstr ""
+msgstr "Pôvodná hodnota: \"%s\""
 
-#: includes/pages/edit.php:219
+#: includes/pages/edit.php:238
 msgid "Reset all taxonomy labels to default values"
-msgstr ""
+msgstr "Nastaviť všetky názvy taxonómie na pôvodné hodnoty"
 
 #: includes/pages/list.php:33
 msgid "List of registered taxonomies:"
-msgstr ""
+msgstr "Zoznam registrovaných taxonómií:"
 
 #: includes/pages/list.php:34
 msgid "(Click the taxonomy name to edit its details)"
-msgstr ""
+msgstr "(Kliknite na názov taxonómie pre jej úpravu)"
 
-#: rename-taxonomies.php:361
-msgctxt "Plugin action link."
-msgid "Settings"
+#: includes/pages/list.php:38
+msgid ""
+"(*) Items in the list are sorted alphabetically by (the customized) "
+"\"Taxonomy Title\" field."
 msgstr ""
+"(*) Položky v zozname sú triedené abecedne podľa (upraveného) názvu "
+"taxonómie."
 
-#: rename-taxonomies.php:402
-msgctxt "Form field label. Taxonomy label name."
-msgid "Name"
-msgstr ""
-
-#: rename-taxonomies.php:403
-msgid "General name for the taxonomy, usually plural."
-msgstr ""
-
-#: rename-taxonomies.php:406
-msgctxt "Form field label. Taxonomy label name."
-msgid "Singular Name"
-msgstr ""
-
-#: rename-taxonomies.php:407
-msgid "Name for one item of the taxonomy."
-msgstr ""
-
-#: rename-taxonomies.php:410
-msgctxt "Form field label. Taxonomy label name."
-msgid "Search Items"
-msgstr ""
+#: rename-taxonomies.php:365
+msgid "Number of items per page:"
+msgstr "Počet položiek na stránku:"
 
 #: rename-taxonomies.php:411
-msgid "Label for taxonomy search form button."
-msgstr ""
+msgctxt "Plugin action link."
+msgid "Settings"
+msgstr "Nastavenia"
 
-#: rename-taxonomies.php:414
+#: rename-taxonomies.php:453
 msgctxt "Form field label. Taxonomy label name."
-msgid "All Items"
-msgstr ""
+msgid "Name"
+msgstr "Názov"
 
-#: rename-taxonomies.php:415
-msgid "Label for all taxonomy items."
-msgstr ""
-
-#: rename-taxonomies.php:418
-msgctxt "Form field label. Taxonomy label name."
-msgid "Edit Item"
-msgstr ""
-
-#: rename-taxonomies.php:419
-msgid "Label for editing the taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:422
-msgctxt "Form field label. Taxonomy label name."
-msgid "View Item"
-msgstr ""
-
-#: rename-taxonomies.php:423
-msgid "Label for viewing the taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:426
-msgctxt "Form field label. Taxonomy label name."
-msgid "Update Item"
-msgstr ""
-
-#: rename-taxonomies.php:427
-msgid "Label for updating the taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:430
-msgctxt "Form field label. Taxonomy label name."
-msgid "Add New Item"
-msgstr ""
-
-#: rename-taxonomies.php:431
-msgid "Label for adding a new taxonomy item."
-msgstr ""
-
-#: rename-taxonomies.php:434
-msgctxt "Form field label. Taxonomy label name."
-msgid "New Item Name"
-msgstr ""
-
-#: rename-taxonomies.php:435
-msgid "Label for new taxonomy item name field."
-msgstr ""
-
-#: rename-taxonomies.php:438
-msgctxt "Form field label. Taxonomy label name."
-msgid "Not Found"
-msgstr ""
-
-#: rename-taxonomies.php:439
-msgid "Used in the meta box and taxonomy list table."
-msgstr ""
-
-#: rename-taxonomies.php:442
-msgctxt "Form field label. Taxonomy label name."
-msgid "No Terms"
-msgstr ""
-
-#: rename-taxonomies.php:443
-msgid "Ued in the posts and media list tables."
-msgstr ""
-
-#: rename-taxonomies.php:446
-msgctxt "Form field label. Taxonomy label name."
-msgid "Items List Navigation"
-msgstr ""
-
-#: rename-taxonomies.php:447
-msgid "String for the table pagination hidden heading."
-msgstr ""
-
-#: rename-taxonomies.php:450
-msgctxt "Form field label. Taxonomy label name."
-msgid "Items List"
-msgstr ""
-
-#: rename-taxonomies.php:451
-msgid "String for the table hidden heading."
-msgstr ""
+#: rename-taxonomies.php:454
+msgid "General name for the taxonomy, usually plural."
+msgstr "Všeobecný názov taxonómie, zvyčajne množné číslo."
 
 #: rename-taxonomies.php:457
 msgctxt "Form field label. Taxonomy label name."
-msgid "Parent Item"
-msgstr ""
+msgid "Singular Name"
+msgstr "Názov (jednotné číslo)"
 
 #: rename-taxonomies.php:458
-msgid "Parent taxonomy label."
-msgstr ""
+msgid "Name for one item of the taxonomy."
+msgstr "Názov jednej položky taxonómie."
+
+#: rename-taxonomies.php:461
+msgctxt "Form field label. Taxonomy label name."
+msgid "Search Items"
+msgstr "Hľadať položky"
 
 #: rename-taxonomies.php:462
-msgctxt "Form field label. Taxonomy label name."
-msgid "Parent Item Colon"
-msgstr ""
+msgid "Label for taxonomy search form button."
+msgstr "Názov tlačidla pre vyhľadávanie položiek taxonómie."
 
-#: rename-taxonomies.php:463
-msgid "The same as parent_item, but with colon (:) in the end."
-msgstr ""
+#: rename-taxonomies.php:465
+msgctxt "Form field label. Taxonomy label name."
+msgid "All Items"
+msgstr "Všetky položky"
+
+#: rename-taxonomies.php:466
+msgid "Label for all taxonomy items."
+msgstr "Názov pre všetky položky taxonómie."
+
+#: rename-taxonomies.php:469
+msgctxt "Form field label. Taxonomy label name."
+msgid "Edit Item"
+msgstr "Upraviť položku"
 
 #: rename-taxonomies.php:470
+msgid "Label for editing the taxonomy item."
+msgstr "Názov pre úpravu položky taxonómie."
+
+#: rename-taxonomies.php:473
 msgctxt "Form field label. Taxonomy label name."
-msgid "Popular Items"
-msgstr ""
+msgid "View Item"
+msgstr "Zobraziť položku"
 
-#: rename-taxonomies.php:471
-msgid "Popular items label."
-msgstr ""
+#: rename-taxonomies.php:474
+msgid "Label for viewing the taxonomy item."
+msgstr "Názov pre zobrazenie položky taxonómie."
 
-#: rename-taxonomies.php:475
+#: rename-taxonomies.php:477
 msgctxt "Form field label. Taxonomy label name."
-msgid "Separate Items With Commas"
-msgstr ""
+msgid "Update Item"
+msgstr "Aktualizovať položku"
 
-#: rename-taxonomies.php:476
-msgid "This is used in the meta box."
-msgstr ""
-
-#: rename-taxonomies.php:480
-msgctxt "Form field label. Taxonomy label name."
-msgid "Add or Remove Items"
-msgstr ""
+#: rename-taxonomies.php:478
+msgid "Label for updating the taxonomy item."
+msgstr "Názov pre aktualizáciu položky taxonómie."
 
 #: rename-taxonomies.php:481
-msgid "Used in the meta box when JavaScript is disabled."
-msgstr ""
+msgctxt "Form field label. Taxonomy label name."
+msgid "Add New Item"
+msgstr "Pridať novú položku"
+
+#: rename-taxonomies.php:482
+msgid "Label for adding a new taxonomy item."
+msgstr "Názov pre pridávanie novej položky taxonómie."
 
 #: rename-taxonomies.php:485
 msgctxt "Form field label. Taxonomy label name."
-msgid "Choose From Most Used"
-msgstr ""
+msgid "New Item Name"
+msgstr "Titulok novej položky"
 
 #: rename-taxonomies.php:486
-msgid "Used in the meta box."
+msgid "Label for new taxonomy item name field."
+msgstr "Názov pre pole titulku novej položky taxonómie."
+
+#: rename-taxonomies.php:489
+msgctxt "Form field label. Taxonomy label name."
+msgid "Not Found"
+msgstr "Nenájdené"
+
+#: rename-taxonomies.php:490
+msgid "Used in the meta box and taxonomy list table."
+msgstr "Tento názov je použitý v meta boxe a v zozname taxonómie."
+
+#: rename-taxonomies.php:493
+msgctxt "Form field label. Taxonomy label name."
+msgid "No Terms"
+msgstr "Žiadne položky"
+
+#: rename-taxonomies.php:494
+msgid "Used in the posts and media list tables."
+msgstr "Používa sa v tabuľkách zoznamu článkov a médií."
+
+#: rename-taxonomies.php:497
+msgctxt "Form field label. Taxonomy label name."
+msgid "Items List Navigation"
+msgstr "Navigácia v zozname položiek"
+
+#: rename-taxonomies.php:498
+msgid "String for the table pagination hidden heading."
+msgstr "Skrytý názov pre pagináciu tabuľky zoznamu položiek."
+
+#: rename-taxonomies.php:501
+msgctxt "Form field label. Taxonomy label name."
+msgid "Items List"
+msgstr "Zoznam položiek"
+
+#: rename-taxonomies.php:502
+msgid "String for the table hidden heading."
+msgstr "Skrytý názov pre tabuľku zoznamu položiek."
+
+#: rename-taxonomies.php:519
+msgctxt "Form field label. Taxonomy label name."
+msgid "Parent Item"
+msgstr "Nadradená položka"
+
+#: rename-taxonomies.php:520
+msgid "Parent taxonomy label."
+msgstr "Názov pre nadradenú taxonómiu."
+
+#: rename-taxonomies.php:524
+msgctxt "Form field label. Taxonomy label name."
+msgid "Parent Item Colon"
+msgstr "Nadradená položka s dvojbodkou"
+
+#: rename-taxonomies.php:525
+msgid "The same as parent_item, but with colon (:) in the end."
 msgstr ""
+"Rovnaký názov ako \"Nadradená položka\", len s dvojbodkou (:) na konci."
+
+#: rename-taxonomies.php:532
+msgctxt "Form field label. Taxonomy label name."
+msgid "Popular Items"
+msgstr "Obľúbené položky"
+
+#: rename-taxonomies.php:533
+msgid "Popular items label."
+msgstr "Názov pre obľúbené položky."
+
+#: rename-taxonomies.php:537
+msgctxt "Form field label. Taxonomy label name."
+msgid "Separate Items With Commas"
+msgstr "Oddeľte položky čiarkou"
+
+#: rename-taxonomies.php:538
+msgid "This is used in the meta box."
+msgstr "Tento názov je použitý v meta boxe."
+
+#: rename-taxonomies.php:542
+msgctxt "Form field label. Taxonomy label name."
+msgid "Add or Remove Items"
+msgstr "Pridať alebo odstrániť položky"
+
+#: rename-taxonomies.php:543
+msgid "Used in the meta box when JavaScript is disabled."
+msgstr "Použáva sa v meta boxe, ak je zakázaný JavaScript."
+
+#: rename-taxonomies.php:547
+msgctxt "Form field label. Taxonomy label name."
+msgid "Choose From Most Used"
+msgstr "Vybrať z najpoužívanejších"
+
+#: rename-taxonomies.php:548
+msgid "Used in the meta box."
+msgstr "Používa sa v meta boxe."

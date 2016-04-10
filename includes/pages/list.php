@@ -40,6 +40,18 @@
 
 	<?php
 
+	/*
+	SPOILER
+
+	Let's continue...
+	Yes, he also had a "valaška", special shepherd's axe.
+	@link  https://en.wikipedia.org/wiki/Shepherd%27s_axe
+
+	J u _ o _ í k
+
+	SPOILER
+	*/
+
 	// Display the list of taxonomies
 
 		$list->display();
