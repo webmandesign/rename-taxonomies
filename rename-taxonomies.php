@@ -11,7 +11,7 @@
  * Plugin Name:        Rename Taxonomies by WebMan
  * Plugin URI:         http://www.webmandesign.eu/
  * Description:        Customize the text labels or menu names for any registered taxonomy using a simple interface.
- * Version:            1.0
+ * Version:            1.0.1
  * Author:             WebMan Design, Oliver Juhas
  * Author URI:         http://www.webmandesign.eu/
  * Text Domain:        rename-taxonomies
@@ -36,7 +36,7 @@
  * Main class
  *
  * @since    1.0
- * @version	 1.0
+ * @version	 1.0.1
  *
  * Contents:
  *
@@ -64,7 +64,7 @@ class WebMan_Rename_Taxonomies {
 
 		public static $plugin_dir;
 
-		public static $admin_page_slug;
+		public static $plugin_slug;
 
 		public static $option_name;
 
@@ -156,7 +156,7 @@ class WebMan_Rename_Taxonomies {
 		 * Then, if we have new labels for taxonomy, apply those.
 		 *
 		 * @since    1.0
-		 * @version  1.0
+		 * @version  1.0.1
 		 *
      * @param array  $args     Array of arguments for registering a taxonomy.
      * @param string $taxonomy Taxonomy key.
@@ -206,6 +206,14 @@ class WebMan_Rename_Taxonomies {
 								&& ! empty( $new_labels )
 							) {
 
+							// Multilingual plugin compatibility (WPML, Polylang)
+
+								if ( function_exists( 'icl_t' ) ) {
+									foreach ( $new_labels as $label_key => $label_text ) {
+										$new_labels[ $label_key ] = icl_t( self::$plugin_slug, $taxonomy . '[' . $label_key . ']', $label_text );
+									}
+								}
+
 							if ( ! isset( $args['labels'] ) ) {
 								$args['labels'] = array();
 							}
@@ -253,7 +261,7 @@ class WebMan_Rename_Taxonomies {
 		 * Admin menu
 		 *
 		 * @since    1.0
-		 * @version  1.0
+		 * @version  1.0.1
 		 */
 		public static function admin_menu() {
 
@@ -266,7 +274,7 @@ class WebMan_Rename_Taxonomies {
 							esc_html__( 'Rename Taxonomies', 'rename-taxonomies' ),
 							esc_html__( 'Rename Taxonomies', 'rename-taxonomies' ),
 							self::$capability,
-							self::$admin_page_slug,
+							self::$plugin_slug,
 							'WebMan_Rename_Taxonomies::admin_page'
 						);
 
@@ -323,7 +331,7 @@ class WebMan_Rename_Taxonomies {
 		 * Admin styles
 		 *
 		 * @since    1.0
-		 * @version  1.0
+		 * @version  1.0.1
 		 *
 		 * @param  string $hook
 		 */
@@ -331,7 +339,7 @@ class WebMan_Rename_Taxonomies {
 
 			// Requirements check
 
-				if ( 'tools_page_' . self::$admin_page_slug !== $hook ) {
+				if ( 'tools_page_' . self::$plugin_slug !== $hook ) {
 					return;
 				}
 
@@ -341,7 +349,7 @@ class WebMan_Rename_Taxonomies {
 				// Styles
 
 					wp_enqueue_style(
-						self::$admin_page_slug,
+						self::$plugin_slug,
 						plugin_dir_url( __FILE__ ) . 'assets/css/style.css'
 					);
 
@@ -393,7 +401,7 @@ class WebMan_Rename_Taxonomies {
 		 * Set plugin action links
 		 *
 		 * @since    1.0
-		 * @version  1.0
+		 * @version  1.0.1
 		 *
 		 * @param  array $links
 		 */
@@ -401,7 +409,7 @@ class WebMan_Rename_Taxonomies {
 
 			// Helper variables
 
-				$plugin_settings_url = add_query_arg( 'page', self::$admin_page_slug, get_admin_url( null, 'tools.php' ) );
+				$plugin_settings_url = add_query_arg( 'page', self::$plugin_slug, get_admin_url( null, 'tools.php' ) );
 
 
 			// Processing
@@ -427,7 +435,7 @@ class WebMan_Rename_Taxonomies {
 		 * Set class variables
 		 *
 		 * @since    1.0
-		 * @version  1.0
+		 * @version  1.0.1
 		 */
 		private static function set_variables() {
 
@@ -438,7 +446,7 @@ class WebMan_Rename_Taxonomies {
 				// Set class variables
 
 					self::$plugin_dir         = trailingslashit( plugin_dir_path( __FILE__ ) );
-					self::$admin_page_slug    = $plugin_slug;
+					self::$plugin_slug        = $plugin_slug;
 					self::$option_name        = 'webman_' . str_replace( '-', '_', $plugin_slug );
 					self::$default_tax_labels = array();
 					self::$capability         = 'manage_options';

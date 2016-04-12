@@ -6,7 +6,7 @@
  * @copyright  WebMan Design, Oliver Juhas
  *
  * @since    1.0
- * @version  1.0
+ * @version  1.0.1
  */
 
 
@@ -16,7 +16,7 @@
 // Helper variables
 
 	$taxonomy   = ( isset( $_GET['taxonomy'] ) ) ? ( sanitize_key( $_GET['taxonomy'] ) ) : ( '' );
-	$list_url   = add_query_arg( 'page', self::$admin_page_slug, get_admin_url( null, 'tools.php' ) );
+	$list_url   = add_query_arg( 'page', self::$plugin_slug, get_admin_url( null, 'tools.php' ) );
 	$nonce      = esc_attr( self::$option_name . '_edit_taxonomy_' . $taxonomy );
 	$label_keys = self::label_keys();
 
@@ -100,9 +100,22 @@
 
 				// Process new labels
 
-					$labels_new = get_option( self::$option_name );
+					$labels_new     = get_option( self::$option_name );
+					$labels_to_save = (array) $_POST['labels'];
 
-					$labels_new['taxonomies'][ $taxonomy ] = array_filter( (array) $_POST['labels'] );
+					// Multilingual plugin compatibility (WPML, Polylang)
+
+						if ( function_exists( 'icl_register_string' ) ) {
+							foreach ( $labels_to_save as $label_key => $label_text ) {
+								if ( empty( $label_text ) ) {
+									icl_unregister_string( self::$plugin_slug, $taxonomy . '[' . $label_key . ']' );
+								} else {
+									icl_register_string( self::$plugin_slug, $taxonomy . '[' . $label_key . ']', $label_text );
+								}
+							}
+						}
+
+					$labels_new['taxonomies'][ $taxonomy ] = array_filter( $labels_to_save );
 
 					/*
 					SPOILER
@@ -121,12 +134,21 @@
 				// Save new labels
 
 					if ( update_option( self::$option_name, $labels_new ) ) {
+
 						echo self::admin_notice(
 								esc_html__( 'New taxonomy labels were saved successfully!', 'rename-taxonomies' )
 								. ' <strong>'
 								. esc_html__( 'Please, refresh the page to preview the changes.', 'rename-taxonomies' )
 								. '</strong>'
 							);
+
+					} else {
+
+						echo self::admin_notice(
+								esc_html__( 'No changes were saved!', 'rename-taxonomies' ),
+								'notice-error'
+							);
+
 					}
 
 			}
@@ -241,6 +263,23 @@
 
 			<input type="hidden" name="action" value="save" />
 
-			<?php wp_nonce_field( $nonce ); ?>
+			<?php
+
+			wp_nonce_field( $nonce );
+
+			/*
+			SPOILER
+
+			Let's continue...
+			I confess his name is similar to Jánošík's...
+
+			J u _ o š í k
+
+			Did you find this spoiler? I bet you didn't. B-)
+
+			SPOILER
+			*/
+
+			?>
 
 		</form>

@@ -20,7 +20,7 @@ The customized taxonomies are renamed only, no registration keys or IDs are chan
 
 ### Plugin Localization
 
-Translate the plugin at its [WordPress.org repository](https://wordpress.org/plugins/rename-taxonomies/): click the "Translate Rename Taxonomies" button under the "Translations" section in sidebar.
+Translate the plugin at its [WordPress.org repository](https://wordpress.org/plugins/rename-taxonomies/): click the "Translate this plugin" button under the "Translations" section in sidebar.
 
 ### Additional Resources
 
@@ -50,11 +50,11 @@ Well, this is most likely caused by your theme (or a plugin) hard-coding the tax
 
 ### Is this plugin translation ready?
 
-Yes, the interface of the plugin is translation ready and you are perfectly fine to use it on single-language website. For multilingual website please read below.
+Yes, the interface of the plugin is translation ready and you are perfectly fine to use it on single-language website. For multilingual website please read below. Translate the plugin by clicking the **"Translate this plugin"** button under the "Translations" section in the sidebar of the plugin WordPress repository page.
 
 ### Does the plugin work with multilingual website and WPML plugin?
 
-If you are building a multilingual website and want to translate the customized taxonomy labels, this is possible using WPML multilingual plugin only (in time of writing this text). Polylang plugin does not support this feature yet, as far as I know and tested it. Other solution would be to [use WordPress multisite approach to build a multilingual website](https://wordpress.tv/2016/01/16/alexandre-simard-elise-desaulniers-multilingual-content-wp/).
+If you are building a multilingual website and want to translate the customized taxonomy labels, this is possible using [**WPML**](https://wpml.org/) or [**Polylang**](https://wordpress.org/plugins/polylang/) multilingual plugin. Please note that if you already have customized your taxonomies labels, you need to resave those to register them for translation with the above multilingual plugins. Other solution would be to [use WordPress multisite approach to build a multilingual website](https://wordpress.tv/2016/01/16/alexandre-simard-elise-desaulniers-multilingual-content-wp/).
 
 ### But there is no setting for `post_format`! How can I change that?
 
