@@ -1,5 +1,30 @@
 # WebMan Rename Taxonomies Changelog
 
+## 1.1.0
+
+* **Add**: Missing taxonomy labels
+* **Update**: Remove obsolete code comments
+* **Update**: Code formatting and organization
+* **Update**: Removing obsolete `readme.md` file
+* **Update**: Not listing taxonomies with no UI
+* **Update**: Localization (and removing obsolete files)
+* **Fix**: Label setup for `menu_name`
+
+#### Files changed:
+
+    changelog.md
+    readme.txt
+    rename-taxonomies.php
+    assets/scss/style.scss
+    assets/scss/_base.scss
+    assets/scss/_edit.scss
+    assets/scss/_list.scss
+    includes/class-list-table.php
+    languages/*.*
+    templates/edit.php
+    templates/list.php
+
+
 ## 1.0.1
 
 * **Add**: Compatible with Polylang

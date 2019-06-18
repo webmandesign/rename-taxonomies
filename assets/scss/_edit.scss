@@ -1,0 +1,97 @@
+/* FILE: _edit.scss */
+
+::placeholder {
+	font-style: italic;
+	font-weight: 400;
+	text-indent: 1.62em;
+	color: inherit;
+	opacity: .5;
+}
+
+.form-edit-rename-taxonomies {
+	max-width: 75em;
+	margin-top: 2.62em;
+
+	th,
+	td {
+		padding: 1em 1.62em;
+		background: rgba( #fff, .5 );
+		border-top: 1px solid;
+		border-bottom: 1px solid;
+		border-color: rgba( #000, .1 );
+	}
+
+	th {
+		background-color: rgba( #000, .05 );
+	}
+
+	label {
+		display: block;
+		text-align: right;
+
+		[dir=rtl] & {
+			text-align: left;
+		}
+
+		code {
+			display: inline-block;
+			margin-top: .62em;
+			font-size: .81em;
+			opacity: 0;
+		}
+
+	}
+
+	.description {
+		display: block;
+		margin: .62em 2px 0;
+	}
+
+	input[type="text"] {
+		max-width: 24em;
+		font-weight: 700;
+	}
+
+	.button-reset {
+		display: inline-block;
+		padding: 0 .38em;
+		font-size: 1.62em;
+		line-height: 1;
+		vertical-align: -.25em;
+		cursor: pointer;
+	}
+
+		input:placeholder-shown + .button-reset {
+			visibility: hidden;
+		}
+
+	.button + .button,
+	.button-reset + .button {
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+
+	.button-hidden {
+		display: none;
+
+		&:hover,
+		&:focus,
+		&:active {
+			display: inline-block;
+		}
+
+	}
+
+		input:focus + .button-reset + .button-hidden {
+			display: inline-block;
+		}
+
+	tr:hover {
+
+		label code {
+			opacity: .75;
+		}
+
+	}
+
+}

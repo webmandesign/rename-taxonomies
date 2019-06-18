@@ -1,0 +1,54 @@
+/* FILE: _list.scss */
+
+.wrap-rename-taxonomies {
+
+	.column-status {
+		width: 8%;
+		text-align: center;
+
+		.dashicons {
+			display: inline-block;
+			width: 1.62em;
+			height: 1.62em;
+			line-height: 1.62em;
+			border: 2px solid;
+			border-radius: 1.62em;
+			opacity: .33;
+
+			&-edit {
+				background: #0a6;
+				color: #fff;
+				border-color: #095;
+				opacity: 1;
+			}
+
+		}
+
+	}
+
+	.column-post_type {
+
+		.dashicons-before {
+			display: inline-block;
+			padding: .2em 1em .2em .2em;
+			line-height: 1.5em;
+			border: 1px solid #d3d3d3;
+			border-radius: 1.5em;
+
+			[dir=rtl] & {
+				padding-left: 1em;
+				padding-right: .2em;
+			}
+
+			&::before {
+				margin-left: .2em;
+				margin-right: .2em;
+				line-height: 1.66em;
+				font-size: .9em;
+			}
+
+		}
+
+	}
+
+}
