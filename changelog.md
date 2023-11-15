@@ -1,5 +1,18 @@
 # WebMan Rename Taxonomies Changelog
 
+## 1.2.0, 20231115
+
+### Updated
+- Array of labels to set
+- Localization
+
+### File updates
+	changelog.md
+	readme.txt
+	rename-taxonomies.php
+	languages/*.*
+
+
 ## 1.1.0
 
 * **Add**: Missing taxonomy labels
@@ -12,17 +25,17 @@
 
 #### Files changed:
 
-    changelog.md
-    readme.txt
-    rename-taxonomies.php
-    assets/scss/style.scss
-    assets/scss/_base.scss
-    assets/scss/_edit.scss
-    assets/scss/_list.scss
-    includes/class-list-table.php
-    languages/*.*
-    templates/edit.php
-    templates/list.php
+	changelog.md
+	readme.txt
+	rename-taxonomies.php
+	assets/scss/style.scss
+	assets/scss/_base.scss
+	assets/scss/_edit.scss
+	assets/scss/_list.scss
+	includes/class-list-table.php
+	languages/*.*
+	templates/edit.php
+	templates/list.php
 
 
 ## 1.0.1

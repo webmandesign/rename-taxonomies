@@ -4,9 +4,9 @@ Donate link:       https://www.webmandesign.eu/contact/
 Author URI:        https://www.webmandesign.eu/
 Plugin URI:        https://www.webmandesign.eu/portfolio/rename-taxonomies-wordpress-plugin/
 Requires at least: 4.3
-Tested up to:      5.2
-Stable tag:        1.1.0
-License:           GNU General Public License v3
+Tested up to:      6.4
+Stable tag:        1.2.0
+License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 Tags:              webman, taxonomy, taxonomies, names, labels, taxonomy name, taxonomy label, taxonomy names, taxonomy labels, editor, manager, rename, categories, tags
 
@@ -81,16 +81,14 @@ The plugin disables customization for certain WordPress native taxonomies. The l
 
 In case you want to edit this list, use a `rename_taxonomies_skipped_keys` filter hook via your theme or plugin code:
 
-```
-function my_prefix_rename_taxonomies_skipped_keys( $taxonomy_keys ) {
+`function my_prefix_rename_taxonomies_skipped_keys( $taxonomy_keys ) {
     return array(
         'link_category',
         'nav_menu',
         'post_format',
     );
 }
-add_filter( 'rename_taxonomies_skipped_keys', 'my_prefix_rename_taxonomies_skipped_keys' );
-```
+add_filter( 'rename_taxonomies_skipped_keys', 'my_prefix_rename_taxonomies_skipped_keys' );`
 
 The custom taxonomies that have no edit UI will be skipped too.
 
@@ -110,11 +108,5 @@ Please see the [`changelog.md` file](https://github.com/webmandesign/rename-taxo
 
 == Upgrade Notice ==
 
-= 1.1.0 =
-Fixing label setup, adding missing labels, improving code and design, updating localization.
-
-= 1.0.1 =
-Added multilingual support (for WPML and Polylang plugin), updated admin notices.
-
-= 1.0 =
-This is initial plugin release.
+= 1.2.0 =
+Updating array of labels to set.

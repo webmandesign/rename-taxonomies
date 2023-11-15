@@ -3,7 +3,7 @@
  * Plugin Name:        Rename Taxonomies by WebMan
  * Plugin URI:         https://www.webmandesign.eu/
  * Description:        Customizes text and menu labels for any registered taxonomy using a simple interface.
- * Version:            1.1.0
+ * Version:            1.2.0
  * Author:             WebMan Design, Oliver Juhas
  * Author URI:         https://www.webmandesign.eu/
  * Text Domain:        rename-taxonomies
@@ -11,7 +11,7 @@
  * License:            GNU General Public License v3
  * License URI:        https://www.gnu.org/licenses/gpl-3.0.txt
  * Requires at least:  4.3
- * Tested up to:       5.2
+ * Tested up to:       6.4
  *
  * This plugin was inspired by "Custom Post Type Editor" plugin
  * Copyright (c) 2012-2015 OM4, https://om4.com.au
@@ -419,7 +419,7 @@ class WebMan_Rename_Taxonomies {
 		 * Get taxonomy label keys, names and descriptions.
 		 *
 		 * @since    1.0.0
-		 * @version  1.1.0
+		 * @version  1.2.0
 		 */
 		public static function get_label_keys() {
 
@@ -508,6 +508,31 @@ class WebMan_Rename_Taxonomies {
 						'description' => esc_html__( 'Label displayed after a term has been updated.', 'rename-taxonomies' ),
 					),
 
+					'item_link' => array(
+						'label'       => esc_html_x( 'Item Link', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+						'description' => esc_html__( 'Title for a navigation link block variation in block editor.', 'rename-taxonomies' ),
+					),
+
+					'item_link_description' => array(
+						'label'       => esc_html_x( 'Item Link Description', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+						'description' => esc_html__( 'Description for a navigation link block variation in block editor.', 'rename-taxonomies' ),
+					),
+
+					'name_field_description' => array(
+						'label'       => esc_html_x( '"Name" Field Description', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+						'description' => esc_html__( 'Description for the "Name" field on edit item screen.', 'rename-taxonomies' ),
+					),
+
+					'slug_field_description' => array(
+						'label'       => esc_html_x( '"Slug" Field Description', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+						'description' => esc_html__( 'Description for the "Slug" field on edit item screen.', 'rename-taxonomies' ),
+					),
+
+					'desc_field_description' => array(
+						'label'       => esc_html_x( '"Description" Field Description', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+						'description' => esc_html__( 'Description for the "Description" field on edit item screen.', 'rename-taxonomies' ),
+					),
+
 					// Hierarchical only
 
 						'parent_item' => array(
@@ -519,6 +544,18 @@ class WebMan_Rename_Taxonomies {
 						'parent_item_colon' => array(
 							'label'       => esc_html_x( 'Parent Item Colon', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
 							'description' => esc_html__( 'The same as parent_item, but with colon (:) in the end.', 'rename-taxonomies' ),
+							'condition'   => 'is_hierarchical',
+						),
+
+						'filter_by_item' => array(
+							'label'       => esc_html_x( 'Filter by Item', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Used in the posts list table.', 'rename-taxonomies' ),
+							'condition'   => 'is_hierarchical',
+						),
+
+						'parent_field_description' => array(
+							'label'       => esc_html_x( 'Parent Field Description', 'Form field label. Taxonomy label name.', 'rename-taxonomies' ),
+							'description' => esc_html__( 'Description for the parent field on edit item screen.', 'rename-taxonomies' ),
 							'condition'   => 'is_hierarchical',
 						),
 
