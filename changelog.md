@@ -1,5 +1,16 @@
 # WebMan Rename Taxonomies Changelog
 
+## 1.2.1, 20241003
+
+### Fixed
+- Removing obsolete `load_plugin_textdomain()`
+
+### File updates
+	changelog.md
+	readme.txt
+	rename-taxonomies.php
+
+
 ## 1.2.0, 20231115
 
 ### Updated

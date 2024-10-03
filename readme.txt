@@ -1,14 +1,16 @@
 === Rename Taxonomies by WebMan ===
+
 Contributors:      webmandesign
-Donate link:       https://www.webmandesign.eu/contact/
+Donate link:       https://www.webmandesign.eu/contact/#donation
 Author URI:        https://www.webmandesign.eu/
 Plugin URI:        https://www.webmandesign.eu/portfolio/rename-taxonomies-wordpress-plugin/
-Requires at least: 4.3
-Tested up to:      6.4
-Stable tag:        1.2.0
+Requires at least: 6.0
+Tested up to:      6.7
+Requires PHP:      7.0
+Stable tag:        1.2.1
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
-Tags:              webman, taxonomy, taxonomies, names, labels, taxonomy name, taxonomy label, taxonomy names, taxonomy labels, editor, manager, rename, categories, tags
+Tags:              taxonomy, name, label, category, tag
 
 Customizes text and menu labels for any registered taxonomy using a simple interface.
 

@@ -1,17 +1,18 @@
 <?php defined( 'ABSPATH' ) or exit;
 /**
- * Plugin Name:        Rename Taxonomies by WebMan
- * Plugin URI:         https://www.webmandesign.eu/
- * Description:        Customizes text and menu labels for any registered taxonomy using a simple interface.
- * Version:            1.2.0
- * Author:             WebMan Design, Oliver Juhas
- * Author URI:         https://www.webmandesign.eu/
- * Text Domain:        rename-taxonomies
- * Domain Path:        /languages
- * License:            GNU General Public License v3
- * License URI:        https://www.gnu.org/licenses/gpl-3.0.txt
- * Requires at least:  4.3
- * Tested up to:       6.4
+ * Plugin Name:  Rename Taxonomies by WebMan
+ * Plugin URI:   https://www.webmandesign.eu/portfolio/rename-taxonomies-wordpress-plugin/
+ * Description:  Customizes text and menu labels for any registered taxonomy using a simple interface.
+ * Version:      1.2.1
+ * Author:       WebMan Design, Oliver Juhas
+ * Author URI:   https://www.webmandesign.eu/
+ * License:      GPL-3.0-or-later
+ * License URI:  https://www.gnu.org/licenses/gpl-3.0.txt
+ * Text Domain:  rename-taxonomies
+ * Domain Path:  /languages
+ *
+ * Requires PHP:       7.0
+ * Requires at least:  6.0
  *
  * This plugin was inspired by "Custom Post Type Editor" plugin
  * Copyright (c) 2012-2015 OM4, https://om4.com.au
@@ -55,7 +56,7 @@ class WebMan_Rename_Taxonomies {
 		 * Initialization.
 		 *
 		 * @since    1.0.0
-		 * @version  1.1.0
+		 * @version  1.2.1
 		 */
 		public static function init() {
 
@@ -69,9 +70,6 @@ class WebMan_Rename_Taxonomies {
 				// Hooks
 
 					// Actions
-
-						// Load after the plugin class is loaded (see below).
-						add_action( 'plugins_loaded', __CLASS__ . '::load_textdomain', 25 );
 
 						add_action( 'admin_menu', __CLASS__ . '::admin_menu' );
 						add_action( 'admin_enqueue_scripts', __CLASS__ . '::admin_styles' );
@@ -93,26 +91,6 @@ class WebMan_Rename_Taxonomies {
 	/**
 	 * 20) Setup
 	 */
-
-		/**
-		 * Load textdomain.
-		 *
-		 * @since    1.0.0
-		 * @version  1.1.0
-		 */
-		public static function load_textdomain() {
-
-			// Processing
-
-				load_plugin_textdomain(
-					self::$plugin_slug,
-					false,
-					WMRT_PLUGIN_PATH . 'languages'
-				);
-
-		} // /load_textdomain
-
-
 
 		/**
 		 * Admin menu.
