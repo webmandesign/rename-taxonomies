@@ -1,8 +1,8 @@
 /* FILE: _list.scss */
 
-.wrap-rename-taxonomies {
+.wrap-rename-taxonomies .column {
 
-	.column-status {
+	&-status {
 		width: 8%;
 		text-align: center;
 
@@ -21,34 +21,44 @@
 				border-color: #095;
 				opacity: 1;
 			}
-
 		}
-
 	}
 
-	.column-post_type {
+	&-post_type {
 
 		.dashicons-before {
 			display: inline-block;
-			padding: .2em 1em .2em .2em;
+			padding: .2em;
+			padding-inline-end: 1em;
 			line-height: 1.5em;
 			border: 1px solid #d3d3d3;
 			border-radius: 1.5em;
 
-			[dir=rtl] & {
-				padding-left: 1em;
-				padding-right: .2em;
-			}
-
 			&::before {
-				margin-left: .2em;
-				margin-right: .2em;
+				margin-inline: .2em;
 				line-height: 1.66em;
 				font-size: .9em;
 			}
-
 		}
-
 	}
 
+	&-title_default {
+		font-weight: 600;
+		font-style: italic;
+
+		.not-changed {
+			font-family: monospace;
+			font-size: .9em;
+			font-weight: 400;
+			font-style: normal;
+			color: inherit;
+			opacity: .66;
+
+			&:hover,
+			&:focus,
+			&:active {
+				opacity: 1;
+			}
+		}
+	}
 }

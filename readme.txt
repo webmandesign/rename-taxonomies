@@ -5,9 +5,9 @@ Donate link:       https://www.webmandesign.eu/contact/#donation
 Author URI:        https://www.webmandesign.eu/
 Plugin URI:        https://www.webmandesign.eu/portfolio/rename-taxonomies-wordpress-plugin/
 Requires at least: 6.0
-Tested up to:      6.7
+Tested up to:      6.9
 Requires PHP:      7.0
-Stable tag:        1.2.1
+Stable tag:        1.3.0
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 Tags:              taxonomy, name, label, category, tag
@@ -36,10 +36,10 @@ You can [contribute your plugin translation](https://translate.wordpress.org/pro
 
 * [Write a review](https://wordpress.org/support/plugin/rename-taxonomies/reviews/#postform)
 * [Have a question?](https://wordpress.org/support/plugin/rename-taxonomies/)
-* [Get a free theme](https://www.webmandesign.eu/project-tag/free-wordpress-theme/)
-* [Follow @webmandesigneu @ Twitter](https://twitter.com/webmandesigneu/)
+* [Get an accessibility ready WordPress theme](https://www.webmandesign.eu/project-tag/free-wordpress-theme/)
+* [Follow @webmandesigneu @ X/Twitter](https://x.com/webmandesigneu/)
 * [Follow @webmandesigneu @ Facebook](https://www.facebook.com/webmandesigneu/)
-* [Visit WebMan Design](https://www.webmandesign.eu)
+* [Visit WebMan Design website](https://www.webmandesign.eu)
 
 
 == Installation ==
@@ -59,13 +59,15 @@ Navigate to **Tools &rarr; Rename Taxonomies** in your WordPress dashboard. Then
 
 = My taxonomies are renamed in admin but not in front-end of my website! =
 
-Well, this is most likely caused by your theme (or a plugin) hard-coding the taxonomy name. Please contact your theme (or a plugin) developer to update their code and use WordPress taxonomy labels instead of hard-coding them.
+Well, this is most likely caused by your theme (or a plugin) hard-coding the taxonomy names on the front-end.
+
+Please contact your theme (or plugin) developer to update their code and use [WordPress taxonomy labels](https://developer.wordpress.org/reference/functions/get_taxonomy_labels/) instead of hard-coding them.
 
 = Is this plugin translation ready? =
 
-Yes, the interface of the plugin is translation ready and you are perfectly fine to use it on single-language website.
+Yes, the interface of the plugin is translation ready and you are perfectly fine to use it on a single-language website.
 
-For multilingual website please read below.
+For multilingual website please read below (the other FAQ question).
 
 You can [translate the plugin](https://translate.wordpress.org/projects/wp-plugins/rename-taxonomies/) directly in WordPress repository. Thank you!
 
@@ -79,20 +81,18 @@ Other solution would be to [use WordPress multisite approach to build a multilin
 
 = But there is no setting for `post_format`! How can I change that? =
 
-The plugin disables customization for certain WordPress native taxonomies. The list consists of `link_category`, `nav_menu` and `post_format`.
+The plugin disables customization for certain WordPress native taxonomies. The list consists of `nav_menu`, `link_category`, `post_format`, `wp_theme`, `wp_template_part_area`, and `wp_pattern_category`.
 
-In case you want to edit this list, use a `rename_taxonomies_skipped_keys` filter hook via your theme or plugin code:
+In case you want to edit this list, use a `rename_taxonomies_skipped_keys` filter hook via your (child) theme or plugin PHP code:
 
-`function my_prefix_rename_taxonomies_skipped_keys( $taxonomy_keys ) {
-    return array(
-        'link_category',
-        'nav_menu',
-        'post_format',
-    );
-}
-add_filter( 'rename_taxonomies_skipped_keys', 'my_prefix_rename_taxonomies_skipped_keys' );`
+`add_filter( 'rename_taxonomies_skipped_keys', function( $taxonomy_keys ) {
 
-The custom taxonomies that have no edit UI will be skipped too.
+    unset( $taxonomy_keys['post_format'] );
+
+    return $taxonomy_keys;
+} );`
+
+The taxonomies that have no admin edit UI will be skipped too.
 
 
 == Screenshots ==
@@ -110,5 +110,5 @@ Please see the [`changelog.md` file](https://github.com/webmandesign/rename-taxo
 
 == Upgrade Notice ==
 
-= 1.2.0 =
-Updating array of labels to set.
+= 1.3.0 =
+Fixing bugs and improving code.

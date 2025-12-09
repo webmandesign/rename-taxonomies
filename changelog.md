@@ -1,5 +1,26 @@
 # WebMan Rename Taxonomies Changelog
 
+## 1.3.0, 20251209
+
+### Fixed
+- PHP error when passing object instead of array
+
+### Updated
+- Admin styles
+- Improved code
+- Improved readme file
+
+### File updates
+	changelog.md
+	readme.txt
+	rename-taxonomies.php
+	assets/scss/style.scss
+	includes/class-list-table.php
+	includes/labels.php
+	templates/edit.php
+	templates/list.php
+
+
 ## 1.2.1, 20241003
 
 ### Fixed
